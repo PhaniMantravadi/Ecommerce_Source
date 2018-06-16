@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<config>
+
+    <tabs>
+
+        <iwdall translate="label" module="iwdall">
+
+            <label>Extensions</label>
+
+            <sort_order>210</sort_order>
+
+        </iwdall>
+
+    </tabs>
+
+    
+</config>
+

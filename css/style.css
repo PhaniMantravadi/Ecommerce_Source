@@ -1,0 +1,54 @@
+@charset "utf-8";
+/* CSS Document */
+
+body,html{margin:0px;padding:0px;width:100%;}
+	body{font-family:Arial, Helvetica, sans-serif;}
+	.banner{width:100%;float:left;}
+	.banner img{width:auto;float:left;max-width:100%;height:auto;}
+	.banner-bt-img{width:100%;float:left;text-align:center;margin-top:-210px;}
+	.banner-bt-img img{}
+	.container{width:1000px;margin:0px auto;}
+	.md-content h1{font-size:20px;font-weight:300;color:#0155b5;padding:50px 50px 5px;border-bottom:1px solid #0155b5;letter-spacing:5px;text-transform:uppercase;text-align:center;margin:0px auto 50px;width:auto;max-width:410px;}
+	.md-content{text-align:center;float:left;width:100%;}
+	.md-content ul{margin:0px auto;padding:0px;width:auto;max-width:790px;}
+	.md-content ul li{list-style:none;float:left;font-size:18px;color:#0155b5;text-align:left;}
+	.md-content ul li a{color:#333;text-decoration:none;}
+	
+	.md-content ul li span{margin:0px 15px;color:#0155b5; }
+	.md-content ul li a img{float:right;margin-top:-18px;}
+	.md-content-link{width:100%;float:left;text-align:center;padding:70px 0px 55px;}
+	.md-content-link a{border:2px solid #0155b5;background:#fff;text-decoration:none;font-family:Arial, Helvetica, sans-serif;font-weight:bold;padding:7px 20px;margin:0px auto;letter-spacing:3px;color:#333;}
+	.md-content-link a:hover{color:#fff;text-decoration:none;background:#0155b5;}
+	.md-content ul li a:hover{text-decoration:underline;}
+	
+	@media only screen and (max-width:1200px)
+	{
+	.container{width:940px;}
+	.banner-bt-img{margin-top:-165px;}
+	}
+	@media only screen and (max-width:992px)
+	{
+	.container{width:760px;}
+	.banner-bt-img{margin-top:-115px;}
+	.md-content ul li span{margin:0px 32px;}
+	.md-content ul li{font-size:15px;}
+	.md-content ul{max-width:720px;}	
+	}
+	@media only screen and (max-width:767px)
+	{
+	.container{width:90%;padding:0px 5%;}
+	.banner-bt-img img{max-width:100%;}
+	.banner-bt-img{width:80%;float:left;margin-left:10%;margin-top:-45px;}
+	.md-content h1{padding:50px 0px 5px;}
+	.md-content ul li{width:100%;padding:10px 0px;}
+	.md-content ul li span{display:none;}
+	.md-content ul li a img {float: none;margin-top: -20px;position: relative;top: 14px;}
+	.md-content ul li:last-child{margin-top:-10px;}
+	}
+	@media only screen and (max-width:480px)
+	{
+	.md-content h1{font-size:18px;margin-bottom:20px;padding-top:30px;}
+	.md-content-link{padding:30px 0 25px;}	
+	.md-content ul li{text-align:center;}
+	}
+

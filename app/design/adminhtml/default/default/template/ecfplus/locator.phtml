@@ -1,0 +1,75 @@
+<?php
+$_htmlId      = $this->getElement()->getHtmlId();
+$_htmlClass   = $this->getElement()->getClass();
+$_htmlName    = $this->getElement()->getName();
+$_readonly    = $this->getElement()->getReadonly();
+if(Mage::registry('storelocator_data')){
+	$id = Mage::registry('storelocator_data')->getId();
+	$collection = Mage::getModel('ecfplus/storelocator_locations')->getCollection()
+					 ->addFieldToFilter('parent_id', $id)
+					 ->load();
+}
+ // this gets the locators from the model that is loaded for this item, so the class [Namespace]_[Module]_Model_[Object] needs a method `getlocators`
+
+$_counter = 0;
+?>
+<input type="hidden" value="<?php echo $id ?>" name="parent_id">
+<tr>
+    <td class="label"><?php echo $this->getElement()->getLabel() ?></td>
+    <td colspan="10" class="grid hours">
+        <table id="attribute-options-table" class="data border ecfplus-locators" cellspacing="0" cellpadding="0"><tbody>
+            <tr class="headings">
+                <th><?php echo $this->__('Latitude') ?></th>
+                <th><?php echo $this->__('Longitude') ?></th>
+                <th><?php echo $this->__('Address') ?></th>
+                <th class="last"><button id="add_new_option_button" title="Add Option" type="button" class="scalable add"><span><span><span><?php echo $this->__('Add Option') ?></span></span></span></button></th>
+            </tr>
+<?php foreach ($collection as $_item): ?>
+<tr class="option-row ecfplus-locators-row" id="locators-row-<?php echo $_counter?>">
+    <td><input name="<?php echo $_htmlName; ?>[value][option_<?php echo $_counter ?>][latitude]" value="<?php echo $_item->getLatitude() ?>" class="input-text required-entry" type="text"></td>
+    <td><input name="<?php echo $_htmlName; ?>[value][option_<?php echo $_counter ?>][longitude]" value="<?php echo $_item->getLongitude() ?>" class="input-text required-entry" type="text"></td>
+    <td><textarea name="<?php echo $_htmlName; ?>[value][option_<?php echo $_counter ?>][address]" value="<?php echo $_item->getAddress() ?>" class="input-text required-entry" rows="4" cols="50"><?php echo $_item->getAddress() ?></textarea></td>
+    <td class="a-left" id="delete_button_container_option_<?php echo $_counter ?>'">
+        <input name="<?php echo $_htmlName; ?>[value][option_<?php echo $_counter ?>][id]" value="<?php echo $_item->getId() ?>" type="hidden">
+        <input id="delete-row-<?php echo $_counter ?>" type="hidden" class="delete-flag" name="<?php echo $_htmlName; ?>[delete][option_<?php echo $_counter ?>]" value=""/>
+        <button onclick="deleterow(<?php echo $_counter ?>)" title="Delete" type="button" class="scalable delete delete-option"><span><span><span>Delete</span></span></span></button>
+    </td>
+</tr>
+<?php
+        $_counter++;
+    endforeach;
+?>
+</tbody></table>
+
+<script type="text/javascript">//<![CDATA[
+
+var _form_html_row = '<tr class="option-row ecfplus-locators-row" id="locators-row-{{id}}"><td><input name="<?php echo $_htmlName; ?>[value][option_{{id}}][latitude]" value="" class="input-text required-entry" type="text"></td><td><input name="<?php echo $_htmlName; ?>[value][option_{{id}}][longitude]" value="" class="input-text required-entry" type="text"></td>><td><textarea name="<?php echo $_htmlName; ?>[value][option_{{id}}][address]" value="" class="input-text required-entry" rows="4" cols="50"></textarea></td><td class="a-left" id="delete_button_container_option_{{id}}"><input name="<?php echo $_htmlName; ?>[value][option_{{id}}][id]" value="" type="hidden"><input id="delete-row-{{id}}" type="hidden" class="delete-flag" name="<?php echo $_htmlName; ?>[delete][option_{{id}}]" value=""/><button onclick="deleterow({{id}})" title="Delete" type="button" class="scalable delete delete-option"><span><span><span>Delete</span></span></span></button></td></tr>';
+
+var _locators_counter = <?php echo $_counter?>;
+
+$('add_new_option_button').observe('click', function(){
+    $('attribute-options-table').insert(_form_html_row.replace(/\{\{id\}\}/ig, _locators_counter));
+    _locators_counter++;
+});
+if(<?php echo $_counter ?> == 0)
+{
+	document.observe('dom:loaded', function(){
+		$('attribute-options-table').insert(_form_html_row.replace(/\{\{id\}\}/ig, _locators_counter));
+		_locators_counter++;
+	});
+}
+function deleterow(id)
+{
+	$('locators-row-'+id).style.display='none'; 
+	$('delete-row-'+id).setValue('1');
+	$$('#locators-row-'+id+' td input').collect(function(element) {
+			element.removeClassName('required-entry');
+	});
+	$$('#locators-row-'+id+' td textarea').collect(function(element) {
+			element.removeClassName('required-entry');
+	});
+}
+
+//]]></script>
+    </td>
+</tr>

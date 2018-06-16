@@ -1,0 +1,9 @@
+<?xml version="1.0"?> 
+<config>
+    <modules>
+        <Velanapps_Ecfplus>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Velanapps_Ecfplus>
+    </modules>
+</config>

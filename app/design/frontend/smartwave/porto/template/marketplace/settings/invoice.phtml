@@ -1,0 +1,86 @@
+<?php if(Mage::getSingleton('customer/session')->isLoggedIn()) {
+    $customerData = Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId());
+} else {
+    $customerData = new Varien_Object();
+}
+?>
+<div class="container main-container vendor-container">
+    <h1 class="text-center"><?php echo Mage::helper('marketplace')->__('Manage Invoice Info'); ?></h1>
+            <form name="settings_supplier_profile" id="settings_supplier_profile" action="<?php echo Mage::getUrl('marketplace/settings/invoiceInfoSave') ?>" method="post" enctype="multipart/form-data">
+
+                    <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+                        <div class="form-group">
+                            <label for="name" class="required col-lg-3 control-label">
+                                <?php echo $this->__('Invoice Auth Sign Label'); ?> <em>*</em>
+                            </label>
+                            <div class="col-sm-8 input-container">
+                                <input type="text" id="supplier_invoice_auth_label" name="supplier_invoice_auth_label"
+                                       class="input-text required-entry form-control validate-length maximum-length-60"
+                                value="<?php echo $customerData->getSupplierInvoiceAuthLabel(); ?>" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+                        <div class="form-group">
+                            <label for="name" class="required col-lg-3 control-label">
+                                <?php echo $this->__('Invoice Header Logo'); ?> <em>*</em>
+                            </label>
+                            <div class="col-sm-8 input-container">
+                                <div class="text-center">
+                                    <?php if(Mage::helper('marketplace')->getSupplierInvoiceHeaderLogo()): ?>
+                                        <img src="<?php echo Mage::helper('marketplace')->getSupplierInvoiceHeaderLogo(); ?>" alt="" class="avatar img-circle img-thumbnail" style="width: 80px"/>
+
+                                    <?php endif; ?>
+                                    <input type="file" id="supplier_invoice_logo" name="supplier_invoice_logo" class="text-center center-block well well-sm"/>
+                                    <span>This logo will be appear in invoice left header section as an invoice logo.</span>
+                                </div>
+                                <div class="checkbox col-sm-8">
+                                    <label><input type="checkbox" name="remove_logo" /> <?php echo $this->__('Remove Logo'); ?> </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+                        <div class="form-group">
+                            <label for="name" class="required col-lg-3 control-label">
+                                <?php echo $this->__('Invoice Auth Sign'); ?> <em>*</em>
+                            </label>
+                            <div class="col-sm-8 input-container">
+                                <div class="text-center">
+                                    <?php if(Mage::helper('marketplace')->getSupplierInvoiceSign()): ?>
+                                        <img src="<?php echo Mage::helper('marketplace')->getSupplierInvoiceSign(); ?>" alt="" class="avatar img-circle img-thumbnail" style="width: 80px"/>
+
+                                    <?php endif; ?>
+                                    <input type="file" id="supplier_invoice_auth_sign" name="supplier_invoice_auth_sign" class="text-center center-block well well-sm"/>
+                                    <span>This sign will be appear in invoice footer section as an authorize signature.</span>
+                                </div>
+                                <div class="checkbox col-sm-8">
+                                    <label><input type="checkbox" name="remove_sign" /> <?php echo $this->__('Remove Sign'); ?> </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4">
+                        <input type="submit" name="submit" class="btn btn-primary" value="<?php echo $this->__('Save') ?>"/>
+                    </div>
+                </div>
+            </form>
+
+<script type="text/javascript">
+    //< ![CDATA[
+    var customForm = new VarienForm('settings_supplier_profile');
+    //]]>
+
+    jQuery(document).ready(function(){
+        jQuery('.datepicker').datepicker();
+        jQuery('.wysiwyg').wysihtml5({
+            color: true,
+            html: true,
+            image: false
+        });
+    });
+</script>

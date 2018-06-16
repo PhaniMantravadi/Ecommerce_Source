@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Uscoding_Xautosku>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Uscoding_Xautosku>
+    </modules>
+</config>

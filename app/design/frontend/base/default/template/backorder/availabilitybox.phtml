@@ -1,0 +1,44 @@
+<?php
+$extEnable=Mage::helper('backorder')->isEnabled();
+  
+if($extEnable == 1){
+
+?>
+<div id="mgkbkoverlay"></div>
+<div id="mgkbk-block" style="display: none;">
+	<a class="mgkbkclose" id="mgkbkhide" href="#">
+	    <img alt="Close" src="<?php echo $this->getSkinUrl('images/mgkbk-close-icon.png') ?>" >
+	</a>
+	<div id="mgkbkcontent">
+             
+	</div>
+</div>
+<script>
+
+
+var $mgk=jQuery.noConflict();
+      $mgk(document).ready(function(){
+
+//$mgk(".mgkbackpopup").on("click",function(){
+
+	  $mgk(".mgkbackpopup").click(function(){ 
+	      var prodID=$mgk(this).attr("prod-id");
+		  $mgk.ajax({
+		      url: "<?php echo $this->getUrl('backorder/index/availabilitynote') ?>",
+		      type: "POST",
+		      data: "prodid="+prodID,
+		      success: function(data) { 
+			  $mgk('#mgkbkoverlay').show();
+			  $mgk('#mgkbk-block').show();
+			  $mgk('#mgkbkcontent').html(data);
+		      }
+		  });
+	   });                            
+           $mgk("#mgkbkhide").click(function(){                       
+                          $mgk("div#mgkbk-block").fadeOut("fast");      
+			  $mgk("div#mgkbkoverlay").fadeOut("fast");  
+			  return false;  
+           });
+     });
+</script> 
+<?php } ?>

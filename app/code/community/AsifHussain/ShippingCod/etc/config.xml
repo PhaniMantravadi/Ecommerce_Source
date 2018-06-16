@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <AsifHussain_ShippingCod>
+      <version>0.0.1</version>
+    </AsifHussain_ShippingCod>
+  </modules>
+  <global>
+    <blocks>
+      <asifhussain_shippingcod_adminhtml>
+        <class>AsifHussain_ShippingCod_Block_Adminhtml</class>
+      </asifhussain_shippingcod_adminhtml>
+	  <shippingcod>
+        <class>AsifHussain_ShippingCod_Block</class>
+      </shippingcod>
+    </blocks>
+    <helpers>
+      <asifhussain_shippingcod>
+        <class>AsifHussain_ShippingCod_Helper</class>
+      </asifhussain_shippingcod>
+    </helpers>
+    <models>
+      <asifhussain_shippingcod>
+        <class>AsifHussain_ShippingCod_Model</class>
+        <resourceModel>asifhussain_shippingcod_resource</resourceModel>
+      </asifhussain_shippingcod>
+      <asifhussain_shippingcod_resource>
+        <class>AsifHussain_ShippingCod_Model_Resource</class>
+        <entities>
+          <postcode>
+            <table>asifhussain_shippingcod_postcode</table>
+          </postcode>
+        </entities>
+      </asifhussain_shippingcod_resource>
+    </models>
+    <resources>
+      
+      <!--
+            This must match our folder name in the module sql folder.
+            -->
+      <asifhussain_shippingcod_setup>
+        <setup>
+          
+          <!--
+                    This defines which module the setup
+                    scripts in this location belong to.
+                    -->
+          <module>AsifHussain_ShippingCod</module>
+          
+          <!--
+                    In each setup script, this
+                    value determines the class of $this.
+                    -->
+          <class>Mage_Core_Model_Resource_Setup</class>
+        </setup>
+        
+        <!--
+                This is relevant only if you have multiple database connections.
+                -->
+        <connection>
+          <use>core_setup</use>
+        </connection>
+      </asifhussain_shippingcod_setup>
+    </resources>
+  </global>
+  <default>
+    <shippingcod_section>
+      <shippingcod_group>
+        <shipping_allowed>Delivery can be done in this area</shipping_allowed>
+        <shipping_disallowed>Delivery is not possible in this area</shipping_disallowed>
+        <cod_allowed>Cash On Delivery is available in this area</cod_allowed>
+        <cod_disallowed>Cash On Delivery is not available in this area</cod_disallowed>
+        <addnl_text>Standard Delivery: Dispatched in 4 business day(s)</addnl_text>
+		<codmessage>payment method not available for this zipcode.</codmessage>
+		<shipmessage>Order cannot be processed for this pincode.</shipmessage>
+        <visualtype>text</visualtype>		
+      </shippingcod_group>
+    </shippingcod_section>
+  </default>
+  <admin>
+    <routers>
+      <asifhussain_shippingcod_admin>
+        <use>admin</use>
+        <args>
+          <module>AsifHussain_ShippingCod_Adminhtml</module>
+          <frontName>shipping-cod-admin</frontName>
+        </args>
+      </asifhussain_shippingcod_admin>
+    </routers>
+  </admin>
+  <frontend>
+    <routers>
+      <asifhussain_shippingcod_ajax>
+        <use>standard</use>
+        <args>
+          <module>AsifHussain_ShippingCod</module>
+          <frontName>shippingcodajax</frontName>
+        </args>
+      </asifhussain_shippingcod_ajax>
+    </routers>
+    <layout>
+      <updates>
+        <asifhussain_shippingcod_ajax>
+          <file>shippingcod.xml</file>
+        </asifhussain_shippingcod_ajax>
+      </updates>
+    </layout>
+  </frontend>
+</config>

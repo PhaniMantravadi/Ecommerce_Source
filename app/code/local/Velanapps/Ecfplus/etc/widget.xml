@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<widgets>
+	<ecfplus_list type="ecfplus/formlist" translate="name description" module="ecfplus">
+        <name>Ecfplus Forms</name>
+        <parameters>
+			<enable_ecfplusform>
+                <label>Form List</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>ecfplus/dropdowns_formlist</source_model>
+            </enable_ecfplusform>
+            <template translate="label">
+                <label>Form Template</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <values>
+                    <text translate="label">
+                        <value>ecfplus/ecfplustemplate.phtml</value>
+                        <label>Ecfplus Template	</label>
+                    </text>                    
+                </values>
+            </template>
+        </parameters>
+    </ecfplus_list>
+	<ecfplus_map type="ecfplus/map" translate="name map" module="ecfplus">
+        <name>Ecfplus Map</name>
+        <parameters>
+			<enable_ecfplusmap>
+				<label>Map</label>
+				<visible>1</visible>
+				<required>1</required>
+				<type>select</type>
+				<source_model>ecfplus/dropdowns_maplist</source_model>
+            </enable_ecfplusmap>
+			<template translate="label">
+				<label>Map Template</label>
+				<visible>1</visible>
+				<required>1</required>
+				<type>select</type>
+				<values>
+					<text translate="label">
+						<value>ecfplus/easymapshow.phtml</value>
+						<label>Ecfplus Map</label>
+					</text>                    
+				</values>
+			</template>
+        </parameters>
+    </ecfplus_map>
+</widgets>

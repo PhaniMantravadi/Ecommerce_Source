@@ -1,0 +1,65 @@
+<?php
+$invoiceCollection = Mage::getModel('sales/order_invoice')->getCollection();
+$supplierInvoiceTable = Mage::getResourceModel('core/setup')->getTable('marketplace/invoice');
+$invoiceCollection->getSelect()->joinInner(
+    array('si' => $supplierInvoiceTable), 'si.invoice_id = main_table.entity_id',
+    array()
+);
+$supplierId = Mage::getSingleton('customer/session')->getId();
+$invoiceCollection->getSelect()->where(
+    'si.supplier_id = '.$supplierId.' AND si.order_id ='.$this->getOrder()->getId()
+);
+$createInvoice = true;
+$marketplaceHelper    = Mage::helper('marketplace');
+?>
+<div class="container">
+<div class="row">
+    <h2 class="sub-header"><?php echo $this->__("Invoices"); ?></h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><?php echo $this->__('Invoice Number'); ?></th>
+                <th><?php echo $this->__('Invoice Date'); ?></th>
+                <th><?php echo $this->__('Amount'); ?></th>
+                <th><?php echo $this->__('Action'); ?></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <?php if($marketplaceHelper->canCreateInvoice(Mage::registry('order_id'), $supplierId)) { ?>
+                <?php foreach($invoiceCollection AS $_item) : ?>
+                    <?php
+                        if ($_item->getId()) {
+                            $createInvoice = false;
+                        }
+                    ?>
+                    <tr>
+                        <td><?php echo $_item->getIncrementId(); ?></td>
+                        <td><?php echo $_item->getCreatedAt(); ?></td>
+                        <td><?php echo $_item->getGrandTotal(); ?></td>
+                        <td>
+                            <a class="btn btn-primary" href="<?php echo Mage::getUrl('marketplace/invoice/print', array('id' => $_item->getId()));?>"><?php echo $this->__('Download'); ?></a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                <?php
+                if ($createInvoice) {
+                    ?>
+                    <tr>                    <td colspan="4">
+                            <a class="btn btn-primary" href="<?php echo Mage::getUrl('marketplace/invoice/createInvoice', array('order_id'=>$this->getOrder()->getId()));?>"><?php echo $this->__('Create'); ?></a>
+                        </td></tr>
+                    <?php
+                }
+                ?>
+            <?php } else {?>
+                <tr><td colspan="4"><?php echo $this->__("Order is cancelled or requested for cancellation, hence can not be invoice."); ?>
+                    </td></tr>
+
+            <?php } ?>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</div>

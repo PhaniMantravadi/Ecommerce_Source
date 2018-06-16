@@ -1,0 +1,121 @@
+<?php $countryList = Mage::getModel('directory/country')->getResourceCollection()
+->loadByStore(); ?>
+<div class="container vendor-container">
+    <h2><?php echo $this->__("Congratulations - You have just made first step do join"); ?></h2>
+    <div class="row">
+        <div class="col-md-12">
+            <form action="<?php echo Mage::getUrl('supplierfrontendproductuploader/register/createpoststep2') ?>" method="post" class="form-horizontal" id="registerForm" accept-charset="utf-8">
+                <div class="col-md-6">
+                    <div class="control-group">
+                        <label for="company_name" class="control-label">
+                            <?php echo $this->__('Company Name'); ?><em class="text-error">*</em>
+                        </label>
+                        <div class="controls"><input name="company_name" type="text" value="" id="company_name" class="input-text required-entry"></div>
+                    </div>
+                    <div class="control-group">
+                        <label for="address_line_1" class="control-label">
+                            <?php echo $this->__('Address Line1'); ?><em class="text-error">*</em>
+                        </label>
+                        <div class="controls"><input name="address_line_1" type="text" value="" id="address_line_1" class="input-text required-entry"></div>
+                    </div>
+                    <div class="control-group">
+                        <label for="address_line_2" class="control-label">
+                            <?php echo $this->__('Address Line2'); ?><em class="text-error">*</em>
+                        </label>
+                        <div class="controls"><input name="address_line_2" type="text" value="" id="address_line_2" class="input-text required-entry"></div>
+                    </div>
+                    <div class="control-group">
+                        <label for="pin_code" class="control-label">
+                            <?php echo $this->__('PinCode'); ?><em class="text-error">*</em>
+                        </label>
+                        <div class="controls">
+                            <div class="controls"><input name="zipcode" type="text" value="" id="pin_code" class="input-text validate-number validate-zip-international required-entry"></div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="state" class="control-label">
+                            <?php echo $this->__('City/State'); ?>
+                        </label>
+                        <div class="controls"><input name="state" type="text" value="" id="state" class="input-text"></div>
+                    </div>
+                    <div class="control-group">
+                        <label for="country_id" class="control-label">
+                            <?php echo $this->__('Country'); ?>
+                        </label>
+                        <div class="controls">
+                            <select name="country_id" id="country_id">
+                                <?php foreach($countryList AS $country): ?>
+                                    <option value="<?php echo $country->getCountryId();?>"><?php echo $country->getName();?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                    <label for="about_shop" class="control-label">
+                        <?php echo $this->__('About Your Shop'); ?>
+                    </label>
+                    <div class="controls"><input name="about_shop" type="text" value="" id="about_shop" maxlength="100" class="input-text maximum-length-100"></div>
+                </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="control-group">
+                        <label for="shop_name" class="control-label">
+                            <?php echo $this->__('Bank Account Number'); ?><em class="text-error">*</em>
+                        </label>
+                        <div class="controls"><input name="bank_account" type="text" value="" id="bank_account" class="input-text required-entry validate-number"></div>
+                    </div>
+                    <div class="control-group">
+                        <label for="bank_name" class="control-label">
+                            <?php echo $this->__('Bank Name'); ?><em class="text-error">*</em>
+                        </label>
+                        <div class="controls"><input name="bank_name" type="text" value="" id="bank_name" class="input-text required-entry"></div>
+                    </div>
+                    <div class="control-group">
+                        <label for="branch_address" class="control-label">
+                            <?php echo $this->__('Branch Address'); ?><em class="text-error">*</em>
+                        </label>
+                        <div class="controls">
+                            <div class="controls"><input name="branch_address" type="text" value="" id="branch_address" class="input-text required-entry"></div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="ifsc_code" class="control-label">
+                            <?php echo $this->__('IFSC Code'); ?><em class="text-error">*</em>
+                        </label>
+                        <div class="controls"><input name="ifsc_code" type="text" value="" id="ifsc_code" class="input-text required-entry validate-alphanum"></div>
+                    </div>
+                    <div class="control-group">
+                        <label for="vat" class="control-label">
+                            <?php echo $this->__('VAT/TIN'); ?>
+                        </label>
+                        <div class="controls"><input name="vat" type="text" id="vat" class="input-text"></div>
+                    </div>
+                    <div class="control-group">
+                        <label for="pan_number" class="control-label">
+                            <?php echo $this->__('PAN Number'); ?><em class="text-error">*</em>
+                        </label>
+                        <div class="controls"><input name="pan" type="text" id="pan_number" class="input-text required-entry validate-alphanum"></div>
+                    </div>
+                    <div class="control-group">
+                        <label for="cst" class="control-label">
+                            <?php echo $this->__('CST'); ?>
+                        </label>
+                        <div class="controls"><input name="cst" type="text" value="" id="cst" class="input-text validate-alphanum"></div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <input type="checkbox" id="accept-terms" class=" required-entry"> <label for="accept-terms"><?php echo $this->__("I have read and agree terms, Seller Policies and Privacy Policy of"); ?></label>
+                </div>
+                <div class="form-actions col-md-4">
+                    <button type="submit" class="btn btn-large btn-primary"><?php echo $this->__('Register'); ?></button>
+                </div>
+            </form>
+        </div> <!-- .span8 -->
+    </div>
+</div>
+
+<script type="text/javascript">
+    //< ![CDATA[
+    var customForm = new VarienForm('registerForm');
+    //]]>
+</script>

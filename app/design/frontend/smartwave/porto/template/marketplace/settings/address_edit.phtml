@@ -1,0 +1,264 @@
+<?php if(Mage::getSingleton('customer/session')->isLoggedIn()) {
+    $customer = Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId());
+} else {
+    $customer = new Varien_Object();
+}
+?>
+<?php
+    $addressType = Mage::app()->getRequest()->getParam('type', 0);
+?>
+<?php $messages = Mage::getSingleton('customer/session')->getMessages(true); ?>
+<?php $msgClass = '';?>
+<?php foreach($messages->getItems('error') AS $msg): ?>
+    <?php
+    $message = $msg->getCode();
+    $msgClass = 'error-msg';
+    ?>
+<?php endforeach; ?>
+<?php foreach($messages->getItems('success') AS $msg): ?>
+    <?php
+    $message = $msg->getCode();
+    $msgClass = 'success-msg';
+    ?>
+<?php endforeach; ?>
+<div class="container vendor-container">
+    <?php if ($addressType == 1) { ?>
+    <h2 class="legend"><?php echo $this->__('Registered Office Address');?></h2>
+    <?php } else if ($addressType == 2) { ?>
+    <h2 class="legend"><?php echo $this->__('Branch Office Address');?></h2>
+    <?php } ?>
+    <?php if ($message) {?>
+    <div class="row">
+        <ul>
+            <li class="<?php echo $msgClass;?>">
+                <ul><li><span><?php echo $message; ?></span></li></ul>
+            </li>
+
+        </ul>
+    </div>
+    <?php } ?>
+    <div class="row">
+        <div class="col-md-8">
+            <form action="<?php echo Mage::getUrl('marketplace/settings/addressinfosave') ?>" method="post" id="supplierRegisterForm" accept-charset="utf-8">
+                <div class="fieldset">
+                    <?php if ($addressType == 1) { $registeredAddress = $customer->getPrimaryBillingAddress();
+                        $registerInfoAddress = $registeredAddress->getStreet();
+                    ?>
+                    <ul class="form-list">
+                        <li class="fields">
+                            <div class="company_name">
+                                <div class="field company_name">
+                                    <label class="required" for="company_name"><em>*</em>
+                                        <?php echo $this->__('Company Name'); ?>
+                                    </label>
+                                    <div class="input-box">
+                                        <input name="registered[company_name]" type="text" value="<?php echo $this->escapeHtml($registeredAddress->getCompany());?>" id="registered:company_name" class="input-text required-entry">
+                                    </div>
+                                </div>
+                                <div class="field name-address_line_1">
+                                    <label class="required" for="address_line_1"><em>*</em>
+                                        <?php echo $this->__('Address Line1'); ?>
+                                    </label>
+                                    <div class="input-box">
+                                        <input name="registered[address_line_1]" type="text" value="<?php echo $this->escapeHtml(isset($registerInfoAddress[0])?$registerInfoAddress[0]:'');?>" id="registered:address_line_1" class="input-text required-entry">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="fields">
+                            <div class="address_line_2">
+                                <div class="field address_line_2">
+                                    <label class="required" for="address_line_2">
+                                        <?php echo $this->__('Address Line2'); ?>
+                                    </label>
+                                    <div class="input-box">
+                                        <input name="registered[address_line_2]" type="text" value="<?php echo $this->escapeHtml(isset($registerInfoAddress[1])?$registerInfoAddress[1]:'');?>" id="registered:address_line_2" class="input-text required-entry">
+                                    </div>
+                                </div>
+                                <div class="field pincode">
+                                    <label class="required" for="pincode"><em>*</em>
+                                        <?php echo $this->__('PinCode'); ?>
+                                    </label>
+                                    <div class="input-box">
+                                        <input name="registered[zipcode]" type="text" value="<?php echo $this->escapeHtml($registeredAddress->getPostcode());?>" id="registered:zipcode" class="input-text validate-number validate-zip-international required-entry">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="fields">
+                            <div class="city">
+                                <div class="field city">
+                                    <label class="required" for="city"><em>*</em>
+                                        <?php echo $this->__('City'); ?>
+                                    </label>
+                                    <div class="input-box">
+                                        <input name="registered[city]" type="text" value="<?php echo $this->escapeHtml($registeredAddress->getCity());?>" id="registered:city" class="input-text">
+                                    </div>
+                                </div>
+                                <div class="field state">
+                                    <label class="required" for="state"><em>*</em>
+                                        <?php echo $this->__('State/Province') ?>
+                                    </label>
+                                    <div class="input-box">
+                                        <select id="registered:region_id" name="registered[region_id]" title="<?php echo $this->__('State/Province') ?>" class="validate-select" style="display:none;">
+                                            <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+                                        </select>
+
+                                        <input type="text" id="registered:region" maxlength="150" name="registered[region]" value="<?php echo $this->escapeHtml($registeredAddress->getRegion());?>" title="<?php echo $this->__('State/Province') ?>" class="input-text" style="display:none;" />
+                                        <script type="text/javascript">
+                                            //<![CDATA[
+                                            $('registered:region_id').setValue("<?php echo $this->escapeHtml($registeredAddress->getRegionId());?>");
+                                            //]]>
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="fields">
+                            <div class="country">
+                                <div class="field country">
+                                    <?php $countryList = Mage::getModel('directory/country')->getResourceCollection()
+                                        ->loadByStore(); ?>
+                                    <label class="required" for="country">
+                                        <?php echo $this->__('Country'); ?>
+                                    </label>
+                                    <div class="input-box">
+                                        <select name="registered[country]" id="registered:country" class="validate-select">
+                                            <?php foreach($countryList AS $country): ?>
+                                                <option value="<?php echo $country->getCountryId();?>"><?php echo $country->getName();?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <script type="text/javascript">
+                                            //<![CDATA[
+                                            $('registered:country').setValue( "<?php echo $this->escapeHtml($registeredAddress->getCountryId());?>");
+                                            //]]>
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <input type="hidden" name="address_id" value="<?php echo $registeredAddress->getId();?>"/>
+                    <script type="text/javascript">
+                        new RegionUpdater('registered:country', 'registered:region', 'registered:region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'registered:zipcode');
+                    </script>
+                    <?php } else if ($addressType == 2) { $branchAddress = $customer->getPrimaryShippingAddress();
+                        $branchInfoAddress = $branchAddress->getStreet();
+                        ?>
+                        <div class="fieldset">
+
+                            <ul class="form-list">
+                                <li class="fields">
+                                    <div class="company_name">
+                                        <div class="field company_name">
+                                            <label class="required" for="company_name"><em>*</em>
+                                                <?php echo $this->__('Company Name'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="branch[company_name]" type="text" value="<?php echo $this->escapeHtml($branchAddress->getCompany());?>" id="branch:company_name" class="input-text required-entry">
+                                            </div>
+                                        </div>
+                                        <div class="field name-address_line_1">
+                                            <label class="required" for="address_line_1"><em>*</em>
+                                                <?php echo $this->__('Address Line1'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="branch[address_line_1]" type="text" value="<?php echo $this->escapeHtml(isset($branchInfoAddress[0])?$branchInfoAddress[0]:'');?>" id="branch:address_line_1" class="input-text required-entry">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="fields">
+                                    <div class="address_line_2">
+                                        <div class="field address_line_2">
+                                            <label class="required" for="address_line_2">
+                                                <?php echo $this->__('Address Line2'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="branch[address_line_2]" type="text" value="<?php echo $this->escapeHtml(isset($branchInfoAddress[1])?$branchInfoAddress[1]:'');?>" id="branch:address_line_2" class="input-text required-entry">
+                                            </div>
+                                        </div>
+                                        <div class="field pincode">
+                                            <label class="required" for="pincode"><em>*</em>
+                                                <?php echo $this->__('PinCode'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="branch[zipcode]" type="text" value="<?php echo $this->escapeHtml($branchAddress->getPostcode());?>" id="branch:zipcode" class="input-text validate-number validate-zip-international required-entry">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="fields">
+                                    <div class="city">
+                                        <div class="field city">
+                                            <label class="required" for="city"><em>*</em>
+                                                <?php echo $this->__('City'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="branch[city]" type="text" value="<?php echo $this->escapeHtml($branchAddress->getCity());?>" id="branch:city" class="input-text">
+                                            </div>
+                                        </div>
+                                        <div class="field state">
+                                            <label class="required" for="state"><em>*</em>
+                                                <?php echo $this->__('State/Province') ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <select id="branch:region_id" name="branch[region_id]" title="<?php echo $this->__('State/Province') ?>" class="validate-select" style="display:none;">
+                                                    <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+                                                </select>
+
+                                                <input type="text" id="branch:region" maxlength="150" name="branch[region]" value="<?php echo $this->escapeHtml($branchAddress->getRegion());?>" title="<?php echo $this->__('State/Province') ?>" class="input-text" style="display:none;" />
+                                                <script type="text/javascript">
+                                                    //<![CDATA[
+                                                    $('branch:region_id').setValue("<?php echo $this->escapeHtml($branchAddress->getRegionId());?>");
+                                                    //]]>
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="fields">
+                                    <div class="country">
+                                        <div class="field country">
+                                            <?php $countryList = Mage::getModel('directory/country')->getResourceCollection()
+                                                ->loadByStore(); ?>
+                                            <label class="required" for="country">
+                                                <?php echo $this->__('Country'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <select name="branch[country]" id="branch:country" class="validate-select">
+                                                    <?php foreach($countryList AS $country): ?>
+                                                        <option value="<?php echo $country->getCountryId();?>"><?php echo $country->getName();?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                                <script type="text/javascript">
+                                                    //<![CDATA[
+                                                    $('branch:country').setValue( "<?php echo $this->escapeHtml($branchAddress->getCountryId());?>");
+                                                    //]]>
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                            <input type="hidden" name="address_id" value="<?php echo $branchAddress->getId();?>"/>
+                            <script type="text/javascript">
+                                new RegionUpdater('branch:country', 'branch:region', 'branch:region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'branch:zipcode');
+                            </script>
+                        </div>
+                    <?php }
+                        ?>
+                </div>
+                <input type="hidden" name="type" value="<?php echo $addressType;?>"/>
+                <button class="btn btn-success btn-lg pull-right" type="submit">Submit</button>
+            </form>
+        </div> <!-- .span8 -->
+    </div>
+</div>
+<script type="text/javascript">
+    //< ![CDATA[
+    var customForm = new VarienForm('supplierRegisterForm');
+    //]]>
+</script>

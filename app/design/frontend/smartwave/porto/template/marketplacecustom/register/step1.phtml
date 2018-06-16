@@ -1,0 +1,605 @@
+<?php $col = Mage::getModel('catalog/category')
+    ->getCollection()
+    ->addFieldToFilter('is_active',array("in"=>array('0', '1')))
+    ->addAttributeToSelect('*'); ?>
+<?php $messages = Mage::getSingleton('customer/session')->getMessages(true); ?>
+<?php $msgClass = '';?>
+<?php foreach($messages->getItems('error') AS $msg): ?>
+    <?php
+    $message = $msg->getCode();
+    $msgClass = 'error-msg';
+    ?>
+<?php endforeach; ?>
+<?php foreach($messages->getItems('success') AS $msg): ?>
+    <?php
+    $message = $msg->getCode();
+    $msgClass = 'success-msg';
+    ?>
+<?php endforeach; ?>
+<div class="container vendor-container">
+    <h2><?php echo $this->__("Register with us as Seller"); ?></h2>
+    <?php if ($message) {?>
+    <div class="row">
+        <ul>
+            <li class="<?php echo $msgClass;?>">
+                <ul><li><span><?php echo $message; ?></span></li></ul>
+            </li>
+
+        </ul>
+    </div>
+    <?php } ?>
+    <div class="row">
+        <div class="col-md-8">
+		<div class="row">
+            <form action="<?php echo Mage::getUrl('supplierfrontendproductuploader/register/createpost') ?>" method="post" id="supplierRegisterForm" accept-charset="utf-8">
+                <div class="container">
+                    <div class="stepwizard">
+                        <div class="stepwizard-row setup-panel">
+                            <div class="stepwizard-step">
+                                <a href="#step-1" type="button" class="btn btn-primary btn-circle">Step 1</a>
+                            </div>
+                            <div class="stepwizard-step">
+                                <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">Step 2</a>
+                            </div>
+                            <div class="stepwizard-step">
+                                <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">Step 3</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row setup-content" id="step-1">
+                        <div class="col-xs-12 col-md-6 col-sm-6">
+                            <div>
+                                <div class="form-group">
+                                    <label class="control-label"><?php echo $this->__('First Name');?><em>*</em></label>
+                                    <input name="firstname" maxlength="100" type="text" required="required" class="form-control required-entry" placeholder="Enter First Name"  />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label"><?php echo $this->__('Last Name');?><em>*</em></label>
+                                    <input name="lastname" maxlength="100" type="text" required="required" class="form-control required-entry" placeholder="Enter Last Name" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label"><?php echo $this->__('Shop Name'); ?><em>*</em></label>
+                                    <input name="shop_name"  type="text" required="required" class="form-control required-entry" placeholder="Enter Shop Name" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="seller_category" class="control-label">
+                                        <?php echo $this->__('Seller Category'); ?>
+                                    </label>
+                                    <div class="controls">
+									<span class="select-box">
+                                        <select class="form-control" class="validate-select" name="seller_category" id="seller_category">
+                                            <option></option>
+                                            <?php foreach($col AS $category) : ?>
+                                                <option value="<?php echo $category->getId(); ?>"><?php echo $category->getName(); ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+									</span>	
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label"><?php echo $this->__('Mobile Number'); ?></label>
+                                    <input name="mobile_number"  type="text" class="form-control validate-phoneLax" placeholder="Enter Mobile Number" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label"><?php echo $this->__('Email Address'); ?><em>*</em></label>
+                                    <input name="email" id="customer_email" type="text" onchange="checkExistanceEmail();" required="required" class="form-control required-entry validate-email" placeholder="Enter Email" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label"><?php echo $this->__('Password'); ?><em>*</em></label>
+                                    <input name="password" type="password" required="required" class="form-control required-entry validate-password" placeholder="Enter Password" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label"><?php echo $this->__('Confirm Password'); ?><em>*</em></label>
+                                    <input name="confirmation_password" type="password" required="required" class="form-control required-entry validate-cpassword" placeholder="Enter Confirmation Password" />
+                                </div>
+                                <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row setup-content" id="step-2">
+					<div class="container">
+
+                        <div class="fieldset">
+                            <h2 class="legend"><?php echo $this->__('Bank Information');?></h2>
+                            <ul class="form-list">
+                                <li class="fields">
+                                    <div class="bank_account">
+                                        <div class="field name-bank_account">
+                                            <label class="required" for="bank_account"><em>*</em>
+                                                <?php echo $this->__('Bank Account Number'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="bank_account" type="text" value="" id="bank_account"  maxlength="150" class="input-text required-entry validate-number">
+                                            </div>
+                                        </div>
+                                        <div class="field name-bankname">
+                                            <label class="required" for="bankname"><em>*</em>
+                                                <?php echo $this->__('Bank Name'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="bank_name" type="text" maxlength="150" value="" id="bank_name" class="input-text required-entry">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="fields">
+                                    <div class="branch_address">
+                                        <div class="field branch_address">
+                                            <label class="required" for="branch_address"><em>*</em>
+                                                <?php echo $this->__('Branch Address'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="branch_address" type="text" value="" id="branch_address" class="input-text required-entry">
+                                            </div>
+                                        </div>
+                                        <div class="field ifsc_code_sort_code">
+                                            <label class="required" for="ifsc_code_sort_code"><em>*</em>
+                                                <?php echo $this->__('IFSC Code/SORT Code'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="ifsc_code" type="text" value="" id="ifsc_code" class="input-text required-entry validate-alphanum">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="fields">
+                                    <div class="vat_tin">
+                                        <div class="field vat_tin">
+                                            <label class="required" for="vat_tin">
+                                                <?php echo $this->__('VAT/TIN'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="vat" type="text" id="vat" class="input-text validate-alphanum">
+                                            </div>
+                                        </div>
+                                        <div class="field pan_number">
+                                            <label class="required" for="pan_number"><em>*</em>
+                                                <?php echo $this->__('PAN Number'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="pan" type="text" id="pan_number" class="input-text required-entry validate-alphanum">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="fields">
+                                    <div class="cst">
+                                        <div class="field cst">
+                                            <label class="required" for="cst">
+                                                <?php echo $this->__('CST'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="cst" type="text" value="" id="cst" class="input-text validate-alphanum">
+                                            </div>
+                                        </div>
+                                        <div class="field about_your_shop">
+                                            <label class="required" for="about_your_shop">
+                                                <?php echo $this->__('About Your Shop'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="about_shop" type="text" value="" id="about_shop" maxlength="100" class="input-text maximum-length-100">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <!-- Registered Office Address -->
+                        <div class="fieldset">
+                            <h2 class="legend"><?php echo $this->__('Registered Office Address');?></h2>
+                            <ul class="form-list">
+                                <li class="fields">
+                                    <div class="company_name">
+                                        <div class="field company_name">
+                                            <label class="required" for="company_name"><em>*</em>
+                                                <?php echo $this->__('Company Name'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="registered[company_name]" type="text" value="" id="registered:company_name" class="input-text required-entry">
+                                            </div>
+                                        </div>
+                                        <div class="field name-address_line_1">
+                                            <label class="required" for="address_line_1"><em>*</em>
+                                                <?php echo $this->__('Address Line1'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="registered[address_line_1]" type="text" value="" id="registered:address_line_1" class="input-text required-entry">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="fields">
+                                    <div class="address_line_2">
+                                        <div class="field address_line_2">
+                                            <label class="required" for="address_line_2">
+                                                <?php echo $this->__('Address Line2'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="registered[address_line_2]" type="text" value="" id="registered:address_line_2" class="input-text required-entry">
+                                            </div>
+                                        </div>
+                                        <div class="field pincode">
+                                            <label class="required" for="pincode"><em>*</em>
+                                                <?php echo $this->__('PinCode'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="registered[zipcode]" type="text" value="" id="registered:zipcode" class="input-text validate-number validate-zip-international required-entry">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="fields">
+                                    <div class="city">
+                                        <div class="field city">
+                                            <label class="required" for="city"><em>*</em>
+                                                <?php echo $this->__('City'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="registered[city]" type="text" value="" id="registered:city" class="input-text">
+                                            </div>
+                                        </div>
+                                        <div class="field state">
+                                            <label class="required" for="state"><em>*</em>
+                                                <?php echo $this->__('State/Province') ?>
+                                            </label>
+                                            <div class="input-box state-box">
+												<span class="select-box">
+													<select id="registered:region_id" name="registered[region_id]" title="<?php echo $this->__('State/Province') ?>" class="validate-select" style="display:none;">
+														<option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+													</select>
+													</span>
+
+                                                <input type="text" id="registered:region" maxlength="150" name="registered[region]" value="" title="<?php echo $this->__('State/Province') ?>" class="input-text" style="display:none;" />
+                                                <script type="text/javascript">
+                                                    //<![CDATA[
+                                                    $('registered:region_id').setAttribute('defaultValue', "");
+                                                    //]]>
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="fields">
+                                    <div class="country">
+                                        <div class="field country">
+                                            <?php $countryList = Mage::getModel('directory/country')->getResourceCollection()
+                                                ->loadByStore(); ?>
+                                            <label class="required" for="country">
+                                                <?php echo $this->__('Country'); ?>
+                                            </label>
+                                            <div class="input-box">
+											<span class="select-box">
+                                                <select name="registered[country]" id="registered:country" class="validate-select">
+                                                    <?php foreach($countryList AS $country): ?>
+                                                        <option value="<?php echo $country->getCountryId();?>"><?php echo $country->getName();?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+											</span>	
+                                                <script type="text/javascript">
+                                                    //<![CDATA[
+                                                    $('registered:country').setAttribute('defaultValue', "IN");
+                                                    //]]>
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                            <script type="text/javascript">
+                                new RegionUpdater('registered:country', 'registered:region', 'registered:region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'registered:zipcode');
+                            </script>
+                        </div>
+                        <!-- Shipping Office Address -->
+                        <div class="fieldset">
+                            <h2 class="legend"><?php echo $this->__('Branch Office Address');?></h2>
+                            <ul class="form-list">
+                                <li class="fields">
+                                    <div class="company_name">
+                                        <div class="field company_name">
+                                            <label class="required" for="company_name"><em>*</em>
+                                                <?php echo $this->__('Company Name'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="branch[company_name]" type="text" value="" id="branch:company_name" class="input-text required-entry">
+                                            </div>
+                                        </div>
+                                        <div class="field name-address_line_1">
+                                            <label class="required" for="address_line_1"><em>*</em>
+                                                <?php echo $this->__('Address Line1'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="branch[address_line_1]" type="text" value="" id="branch:address_line_1" class="input-text required-entry">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="fields">
+                                    <div class="address_line_2">
+                                        <div class="field address_line_2">
+                                            <label class="required" for="address_line_2">
+                                                <?php echo $this->__('Address Line2'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="branch[address_line_2]" type="text" value="" id="branch:address_line_2" class="input-text required-entry">
+                                            </div>
+                                        </div>
+                                        <div class="field pincode">
+                                            <label class="required" for="pincode"><em>*</em>
+                                                <?php echo $this->__('PinCode'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="branch[zipcode]" type="text" value="" id="branch:zipcode" class="input-text validate-number validate-zip-international required-entry">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="fields">
+                                    <div class="city">
+                                        <div class="field city">
+                                            <label class="required" for="city"><em>*</em>
+                                                <?php echo $this->__('City'); ?>
+                                            </label>
+                                            <div class="input-box">
+                                                <input name="branch[city]" type="text" value="" id="branch:city" class="input-text">
+                                            </div>
+                                        </div>
+                                        <div class="field state">
+                                            <label class="required" for="state"><em>*</em>
+                                                <?php echo $this->__('State/Province') ?>
+                                            </label>
+                                            <div class="input-box state-box">
+											<span class="select-box">
+                                                <select id="branch:region_id" name="branch[region_id]" title="<?php echo $this->__('State/Province') ?>" class="validate-select" style="display:none;">
+                                                    <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+                                                </select>
+											</span>
+                                                <input type="text" id="branch:region" maxlength="150" name="branch[region]" value="" title="<?php echo $this->__('State/Province') ?>" class="input-text" style="display:none;" />
+                                                <script type="text/javascript">
+                                                    //<![CDATA[
+                                                    $('branch:region_id').setAttribute('defaultValue', "");
+                                                    //]]>
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="fields">
+                                    <div class="country">
+                                        <div class="field country">
+                                            <?php $countryList = Mage::getModel('directory/country')->getResourceCollection()
+                                                ->loadByStore(); ?>
+                                            <label class="required" for="country">
+                                                <?php echo $this->__('Country'); ?>
+                                            </label>
+                                            <div class="input-box">
+											<span class="select-box">
+                                                <select name="branch[country]" id="branch:country" class="validate-select">
+                                                    <?php foreach($countryList AS $country): ?>
+                                                        <option value="<?php echo $country->getCountryId();?>"><?php echo $country->getName();?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+											</span>	
+                                                <script type="text/javascript">
+                                                    //<![CDATA[
+                                                    $('branch:country').setAttribute('defaultValue', "IN");
+                                                    //]]>
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="control">
+                                    <div class="input-box">
+                                        <input type="checkbox" class="checkbox" onclick="setSameAsRegisteredAddress(this.checked)"id="same_as_registered" value="1" title="Same as Registered Office Address" name="same_as_registered">
+                                    </div>
+                                    <label for="is_subscribed">Same as Registered Office Address</label>
+                                </li>
+                            </ul>
+                            <script type="text/javascript">
+                                var branchAddressUpdator = new RegionUpdater('branch:country', 'branch:region', 'branch:region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'branch:zipcode');
+                            </script>
+                        </div>
+
+                        <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
+					</div>
+                    </div>
+                    <div class="row setup-content" id="step-3">
+                        <div class="col-md-12">
+                            <?php $countryList = Mage::getModel('directory/country')->getResourceCollection()
+                                ->loadByStore();
+                            $loggedUser = Mage::getSingleton( 'customer/session', array('name' => 'frontend') );
+                            $customer = Mage::getModel('customer/customer')->load($loggedUser->getCustomer()->getEntityId());
+                            ?>
+                            <div class="document-details">
+                                <div class="control-group">
+                                    <label for="pan_document_upload" class="control-label">
+                                        <?php echo $this->__('PAN Document Upload'); ?>
+                                    </label>
+                                    <div class="controls">
+                                        <input name="pan_document" type="file" value="" id="pan_document_upload" class="input<?php echo (!$customer->getData('pan_document')) ? '' : '' ?>"></div>
+                                    <?php if($customer->getData('pan_document')): ?>
+                                        <p class="help-block"><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'documents/pan_document/'.$customer->getData('pan_document'); ?>">Download</a></p>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="control-group">
+                                    <label for="vat_document_upload" class="control-label">
+                                        <?php echo $this->__('VAT Document Upload'); ?>
+                                    </label>
+                                    <div class="controls"><input name="vat_document" type="file" value="" id="vat_document_upload" class="input<?php echo (!$customer->getData('vat_document')) ? '' : '' ?>"></div>
+                                    <?php if($customer->getData('vat_document')): ?>
+                                        <p class="help-block"><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'documents/vat_document/'.$customer->getData('vat_document'); ?>">Download</a></p>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="control-group">
+                                    <label for="tin_document_upload" class="control-label">
+                                        <?php echo $this->__('TIN Document Upload'); ?>
+                                    </label>
+                                    <div class="controls"><input name="tin_document" type="file" value="" id="tin_document_upload" class=""></div>
+                                    <?php if($customer->getData('tin_document')): ?>
+                                        <p class="help-block"><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'documents/tin_document/'.$customer->getData('tin_document'); ?>">Download</a></p>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="control-group">
+                                    <label for="bank_can_chq" class="control-label">
+                                        <?php echo $this->__('Bank Can Chq'); ?>
+                                    </label>
+                                    <div class="controls">
+                                        <div class="controls"><input name="bank_can_chq" type="file" value="" id="bank_can_chq" class=""></div>
+                                        <?php if($customer->getData('bank_can_chq')): ?>
+                                            <p class="help-block"><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'documents/bank_can_chq/'.$customer->getData('bank_can_chq'); ?>">Download</a></p>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label for="other_document_upload" class="control-label">
+                                        <?php echo $this->__('Other Document Upload'); ?>
+                                    </label>
+                                    <div class="controls">
+                                        <div class="controls"><input name="other_document" type="file" value="" id="other_document_upload" class=""></div>
+                                        <?php if($customer->getData('other_document')): ?>
+                                            <p class="help-block"><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'documents/other_document/'.$customer->getData('other_document'); ?>">Download</a></p>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label for="other_document_upload_2" class="control-label">
+                                        <?php echo $this->__('Other Document Upload'); ?>
+                                    </label>
+                                    <div class="controls">
+                                        <div class="controls"><input name="other_document_2" type="file" value="" id="other_document_upload_2" class=""></div>
+                                        <?php if($customer->getData('other_document_2')): ?>
+                                            <p class="help-block"><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'documents/other_document_2/'.$customer->getData('other_document_2'); ?>">Download</a></p>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control">
+                                <input type="checkbox" id="accept-terms" class="check-box required-entry" disabled="disabled"> <label for="accept-terms"><?php echo $this->__("<a href='javascript:void(0);' onclick='readTermAndCondition();'>I have read and agree terms, Seller Policies and Privacy Policy of</a>"); ?></label>
+                            </div>
+                            <button class="btn btn-success btn-lg pull-right" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+			</div>
+        </div> <!-- .span8 -->
+    </div>
+</div>
+<script type="text/javascript">
+    //< ![CDATA[
+    var customForm = new VarienForm('supplierRegisterForm');
+    //]]>
+</script>
+<script type="text/javascript">
+    function checkExistanceEmail() {
+        var loginURL = '<?php echo $this->getUrl('supplierfrontendproductuploader/register/checkemail'); ?>';
+        var request = new Ajax.Request(
+            loginURL,
+            {
+                method:'post',
+                parameters: {
+                    email:$('customer_email').getValue()
+                },
+                onSuccess: function(transport)
+                {
+                    var data = transport.responseText.evalJSON();
+                    if(data.status){
+                        jQueryIWD('#customer_email').addClass('validation-failed');
+                        jQueryIWD('#customer_email').addClass('validate-email-failed');
+                        var errHtml ='<div id="check-email-validation" class="validation-advice">Email Id is already registered.</div>';
+                        jQueryIWD('#customer_email').after(errHtml);
+                    } else {
+                        jQueryIWD('#customer_email').removeClass('validate-email-failed');
+                        jQueryIWD('#customer_email').removeClass('validation-failed');
+                        if (typeof jQueryIWD('#check-email-validation') != 'undefined') {
+                            jQueryIWD('#check-email-validation').remove();
+                        }
+
+                    }
+                }
+
+            }
+        );
+    }
+    jQueryIWD(document).ready(function () {
+        function validateForm(){
+            if(customForm.validator && customForm.validator.validate()){
+                return true;
+            }
+            return false;
+        }
+
+        var navListItems = jQueryIWD('div.setup-panel div a'),
+            allWells = jQueryIWD('.setup-content'),
+            allNextBtn = jQueryIWD('.nextBtn');
+
+        allWells.hide();
+
+        navListItems.click(function (e) {
+            e.preventDefault();
+            var $target = jQueryIWD(jQueryIWD(this).attr('href')),
+                $item = jQueryIWD(this);
+
+            if (!$item.hasClass('disabled')) {
+                navListItems.removeClass('btn-primary').addClass('btn-default');
+                $item.addClass('btn-primary');
+                allWells.hide();
+                $target.show();
+                $target.find('input:eq(0)').focus();
+            }
+        });
+
+        allNextBtn.click(function(){
+            var curStep = jQueryIWD(this).closest(".setup-content"),
+                curStepBtn = curStep.attr("id"),
+                nextStepWizard = jQueryIWD('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+                curInputs = curStep.find("input[type='text'],input[type='url'],textarea[textarea]"),
+                isValid = true,
+                prototypeValidator = true;
+
+            jQueryIWD(".form-group").removeClass("has-error");
+            for(var i=0; i<curInputs.length; i++){
+                if (!curInputs[i].validity.valid){
+                    isValid = false;
+                    jQueryIWD(curInputs[i]).closest(".form-group").addClass("has-error");
+                }
+            }
+            prototypeValidator = validateForm();
+            var emailValidation = jQueryIWD('#customer_email').hasClass('validate-email-failed');
+            if (isValid && prototypeValidator && !emailValidation)
+                nextStepWizard.removeAttr('disabled').trigger('click');
+        });
+
+
+        jQueryIWD('div.setup-panel div a.btn-primary').trigger('click');
+    });
+
+    function readTermAndCondition() {
+        var strWindowFeatures = "location=yes,height=570,width=520,scrollbars=yes,status=yes";
+        var URL = "<?php echo Mage::getBaseUrl().'merchant_agreement';?>";
+        var win = window.open(URL, "_blank", strWindowFeatures);
+        jQueryIWD('#accept-terms').prop("disabled", false);
+    }
+
+    function setSameAsRegisteredAddress(flag) {
+        $('same_as_registered').checked = flag;
+        if (flag) {
+            arrElements = Form.getElements('supplierRegisterForm');
+            for (var elemIndex in arrElements) {
+                if (arrElements[elemIndex].id) {
+                    var sourceField = $(arrElements[elemIndex].id.replace(/^branch:/, 'registered:'));
+                    if (sourceField){
+                        arrElements[elemIndex].value = sourceField.value;
+                    }
+                }
+            }
+            //$('shipping:country_id').value = $('billing:country_id').value;
+            branchAddressUpdator.update();
+            $('branch:region_id').value = $('registered:region_id').value;
+            $('branch:region').value = $('registered:region').value;
+            //shippingForm.elementChildLoad($('shipping:country_id'), this.setRegionValue.bind(this));
+        }
+    }
+</script>

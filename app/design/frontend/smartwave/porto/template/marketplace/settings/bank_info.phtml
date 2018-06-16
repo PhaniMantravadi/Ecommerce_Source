@@ -1,0 +1,124 @@
+<?php if(Mage::getSingleton('customer/session')->isLoggedIn()) {
+    $customer = Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId());
+} else {
+    $customer = new Varien_Object();
+}
+?>
+<?php $messages = Mage::getSingleton('customer/session')->getMessages(true); ?>
+<?php $msgClass = '';?>
+<?php foreach($messages->getItems('error') AS $msg): ?>
+    <?php
+    $message = $msg->getCode();
+    $msgClass = 'error-msg';
+    ?>
+<?php endforeach; ?>
+<?php foreach($messages->getItems('success') AS $msg): ?>
+    <?php
+    $message = $msg->getCode();
+    $msgClass = 'success-msg';
+    ?>
+<?php endforeach; ?>
+<div class="container vendor-container">
+    <h2 class="legend"><?php echo $this->__('Bank Information');?></h2>
+    <?php if ($message) {?>
+        <div class="row">
+            <ul>
+                <li class="<?php echo $msgClass;?>">
+                    <ul><li><span><?php echo $message; ?></span></li></ul>
+                </li>
+
+            </ul>
+        </div>
+    <?php } ?>
+    <div class="row">
+        <form action="<?php echo Mage::getUrl('marketplace/settings/bankinfosave') ?>" method="post" id="supplierRegisterForm" accept-charset="utf-8" enctype="multipart/form-data">
+            <div class="fieldset">
+
+                <ul class="form-list">
+                    <li class="fields">
+                        <div class="bank_account">
+                            <div class="field name-bank_account">
+                                <label class="required" for="bank_account"><em>*</em>
+                                    <?php echo $this->__('Bank Account Number'); ?>
+                                </label>
+                                <div class="input-box">
+                                    <input name="bank_account" value="<?php echo $this->escapeHtml($customer->getBankAccount());?>" type="text" value="" id="bank_account"  maxlength="150" class="input-text required-entry validate-number">
+                                </div>
+                            </div>
+                            <div class="field name-bankname">
+                                <label class="required" for="bankname"><em>*</em>
+                                    <?php echo $this->__('Bank Name'); ?>
+                                </label>
+                                <div class="input-box">
+                                    <input name="bank_name" type="text" maxlength="150" value="<?php echo $this->escapeHtml($customer->getBankName());?>" id="bank_name" class="input-text required-entry">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="fields">
+                        <div class="branch_address">
+                            <div class="field branch_address">
+                                <label class="required" for="branch_address"><em>*</em>
+                                    <?php echo $this->__('Branch Address'); ?>
+                                </label>
+                                <div class="input-box">
+                                    <input name="branch_address" type="text" value="<?php echo $this->escapeHtml($customer->getBranchAddress());?>" id="branch_address" class="input-text required-entry">
+                                </div>
+                            </div>
+                            <div class="field ifsc_code_sort_code">
+                                <label class="required" for="ifsc_code_sort_code"><em>*</em>
+                                    <?php echo $this->__('IFSC Code/SORT Code'); ?>
+                                </label>
+                                <div class="input-box">
+                                    <input name="ifsc_code" type="text" value="<?php echo $this->escapeHtml($customer->getIfscCode());?>" id="ifsc_code" class="input-text required-entry validate-alphanum">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="fields">
+                        <div class="vat_tin">
+                            <div class="field vat_tin">
+                                <label class="required" for="vat_tin">
+                                    <?php echo $this->__('VAT/TIN'); ?>
+                                </label>
+                                <div class="input-box">
+                                    <input name="vat" type="text" value="<?php echo $this->escapeHtml($customer->getVat());?>" id="vat" class="input-text validate-alphanum">
+                                </div>
+                            </div>
+                            <div class="field pan_number">
+                                <label class="required" for="pan_number"><em>*</em>
+                                    <?php echo $this->__('PAN Number'); ?>
+                                </label>
+                                <div class="input-box">
+                                    <input name="pan" type="text" value="<?php echo $this->escapeHtml($customer->getPan());?>" id="pan_number" class="input-text required-entry validate-alphanum">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="fields">
+                        <div class="cst">
+                            <div class="field cst">
+                                <label class="required" for="cst">
+                                    <?php echo $this->__('CST'); ?>
+                                </label>
+                                <div class="input-box">
+                                    <input name="cst" type="text" value="<?php echo $this->escapeHtml($customer->getCst());?>" id="cst" class="input-text validate-alphanum">
+                                </div>
+                            </div>
+
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+            <button class="btn btn-success btn-lg pull-right" type="submit">Submit</button>
+        </form>
+
+    </div>
+</div>
+<script type="text/javascript">
+    //< ![CDATA[
+    var customForm = new VarienForm('supplierRegisterForm');
+    //]]>
+</script>
+

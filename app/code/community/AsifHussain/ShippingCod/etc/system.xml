@@ -1,0 +1,146 @@
+<?xml version="1.0" ?>
+<config>
+  <tabs>
+    <shippingcod_tab module="asifhussain_shippingcod" translate="label">
+      <label>HUSSAINS</label>
+      <sort_order>100</sort_order>
+      <show_in_default>1</show_in_default>
+      <show_in_website>1</show_in_website>
+      <show_in_store>1</show_in_store>
+    </shippingcod_tab>
+  </tabs>
+  <sections>
+    <shippingcod_section module="asifhussain_shippingcod" translate="label">
+      <label>Shipping COD Config</label>
+      <sort_order>200</sort_order>
+      <show_in_default>1</show_in_default>
+      <show_in_website>1</show_in_website>
+      <show_in_store>1</show_in_store>
+      <tab>shippingcod_tab</tab>
+      <groups>
+        <shippingcod_group translate="label">
+          <label>General</label>
+          <comment>Make the nessary config changes to reflect on the product view page</comment>
+          <sort_order>10</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <active translate="label">
+              <label>Enabled</label>
+			  <comment>Enable or Disable the module, disbaling it will remove the COD check form on the product and will not restrict the COD payment on the checkout page.</comment>
+              <frontend_type>select</frontend_type>
+              <source_model>asifhussain_shippingcod/system_config_yesno</source_model>
+              <sort_order>1</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </active>
+			<activation_key translate="label tooltip comment">
+              <label>Activation Key</label>
+              <comment>Enter the activation key from the email received</comment>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <frontend_type>text</frontend_type>
+              <sort_order>2</sort_order>
+            </activation_key>
+			<resmethods translate="label comment">
+              <label>Methods to Restrict</label>
+              <comment>Select the payment methods you want to restrict</comment>
+              <frontend_type>multiselect</frontend_type>
+              <source_model>asifhussain_shippingcod/system_config_payments</source_model>
+              <sort_order>3</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+            </resmethods>
+            <shipping_allowed translate="label tooltip comment">
+              <label>Shipping Allowed Text</label>
+              <comment>Enter the default text shown when shipping is allowed</comment>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <frontend_type>text</frontend_type>
+              <sort_order>4</sort_order>
+            </shipping_allowed>
+            <shipping_disallowed translate="label tooltip comment">
+              <label>Shipping Not Allowed Text</label>
+              <comment>Enter the default text shown when shipping is not allowed</comment>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <frontend_type>text</frontend_type>
+              <sort_order>5</sort_order>
+            </shipping_disallowed>
+            <cod_allowed translate="label tooltip comment">
+              <label>COD Allowed Text</label>
+              <comment>Enter the default text shown when COD is allowed</comment>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <frontend_type>text</frontend_type>
+              <sort_order>6</sort_order>
+            </cod_allowed>
+            <cod_disallowed translate="label tooltip comment">
+              <label>COD Not Allowed Text</label>
+              <comment>Enter the default text shown when COD is not allowed</comment>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <frontend_type>text</frontend_type>
+              <sort_order>6</sort_order>
+            </cod_disallowed>
+            <addnl_text translate="label tooltip comment">
+              <label>Additional Text</label>
+              <comment>Can use this field to put the normal dispatch time</comment>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <frontend_type>text</frontend_type>
+              <sort_order>7</sort_order>
+            </addnl_text>
+            <visualtype translate="label comment">
+              <label>Status Appearence</label>
+              <comment>Changes the appearence of status in text or icons</comment>
+              <frontend_type>select</frontend_type>
+              <source_model>asifhussain_shippingcod/system_config_apperance</source_model>
+              <sort_order>8</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+            </visualtype>
+			<codmessage translate="label tooltip comment">
+              <label>COD Resticted Message</label>
+              <comment>Display this message when COD is not available for a postcode</comment>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <frontend_type>text</frontend_type>
+              <sort_order>9</sort_order>
+            </codmessage>
+			<shipmessage translate="label tooltip comment">
+              <label>Shipping Resticted Message</label>
+              <comment>Display this message when shipping is not available for a postcode</comment>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <frontend_type>text</frontend_type>
+              <sort_order>10</sort_order>
+            </shipmessage>
+            <import translate="label">
+              <label>Import</label>
+              <comment>Upload a csv file with all the postcodes including there shipping and COD availability details. The upload will add the missing postcodes and OVERWRITES the existing.</comment>
+              <frontend_type>import</frontend_type>
+              <backend_model>asifhussain_shippingcod/system_csv</backend_model>
+              <sort_order>11</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+            </import>
+          </fields>
+        </shippingcod_group>
+      </groups>
+    </shippingcod_section>
+  </sections>
+</config>

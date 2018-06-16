@@ -1,0 +1,5 @@
+<div class="seller-name">
+<?php if($this->isCreatedBySupplier() && $this->canShowSoldBy()) : ?>
+    <?php echo $this->__("Sold By : "); ?> <a href="<?php echo Mage::helper("marketplace")->getSupplierPageUrl($this->getProduct()); ?>"><?php echo $this->getProductSupplierName(); ?></a>
+<?php endif; ?>
+</div>

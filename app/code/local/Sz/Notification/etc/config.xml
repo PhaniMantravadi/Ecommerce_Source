@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Email Log integration.
+*
+* @package    Sz_Notification
+* @author     Sushil Zore <sushil.zore@gmail.com>
+*/
+-->
+<config>
+    <modules>
+        <Sz_Notification>
+            <version>1.0.0</version>
+        </Sz_Notification>
+    </modules>
+    <global>
+        <helpers>
+            <sz_notification>
+                <class>Sz_Notification_Helper</class>
+            </sz_notification>
+        </helpers>
+        <template>
+            <email>
+                <product_file_upload_notification_email_template translate="label" module="sz_notification">
+                    <label>Product File Upload Notification</label>
+                    <file>notification/product_file_upload_notification.html</file>
+                    <type>html</type>
+                </product_file_upload_notification_email_template>
+                <product_file_process_notification_email_template translate="label" module="sz_notification">
+                    <label>Product File Process Notification</label>
+                    <file>notification/product_file_process_notification.html</file>
+                    <type>html</type>
+                </product_file_process_notification_email_template>
+                <order_place_notification_notification_email_template translate="label" module="sz_notification">
+                    <label>Order Placement Notification</label>
+                    <file>notification/order_place_notification_notification.html</file>
+                    <type>html</type>
+                </order_place_notification_notification_email_template>
+                <order_cancellation_request_notification_email_template translate="label" module="sz_notification">
+                    <label>Order Cancellation Request Notification</label>
+                    <file>notification/order_cancellation_request_notification.html</file>
+                    <type>html</type>
+                </order_cancellation_request_notification_email_template>
+                <order_cancellation_process_notification_email_template translate="label" module="sz_notification">
+                    <label>Order Cancellation Process Notification</label>
+                    <file>notification/order_cancellation_process_notification.html</file>
+                    <type>html</type>
+                </order_cancellation_process_notification_email_template>
+            </email>
+        </template>
+    </global>
+    <default>
+        <notification>
+            <product_file_upload>
+                <is_enable>1</is_enable>
+                <sender>general</sender>
+                <email_template>product_file_upload_notification_email_template</email_template>
+            </product_file_upload>
+            <product_file_process>
+                <is_enable>1</is_enable>
+                <sender>general</sender>
+                <email_template>product_file_process_notification_email_template</email_template>
+            </product_file_process>
+            <order_place_notification>
+                <is_enable>1</is_enable>
+                <sender>general</sender>
+                <email_template>order_place_notification_notification_email_template</email_template>
+            </order_place_notification>
+            <order_cancellation_request>
+                <is_enable>1</is_enable>
+                <sender>general</sender>
+                <email_template>order_cancellation_request_notification_email_template</email_template>
+            </order_cancellation_request>
+            <order_cancellation_process>
+                <is_enable>1</is_enable>
+                <sender>general</sender>
+                <email_template>order_cancellation_process_notification_email_template</email_template>
+            </order_cancellation_process>
+        </notification>
+    </default>
+</config>

@@ -1,0 +1,98 @@
+<?php $isActive = Mage::getStoreConfig('shippingcod_section/shippingcod_group/active');
+if($isActive==1 || $isActive=='1') { ?>
+<!--You can make any from this line onward till the mentioned comment below, otherwise the module will not work -->
+<div style="border: 1px solid #E7E7E7;width:100%;position:relative;">
+	<div style="padding:5px;">
+		<div id="pincheck1">
+			<b>Check your delivery options: </b><br><input type="text" id="strPinCode" class="input-text" placeholder="Enter Postcode">
+			<button type="button" class="button" value="Check" id="btnPostCheck"><span>Check</span></button>
+		</div>
+		<span style="color:#ff0000" id="ermsg"></span>
+		<div id="pstResult">
+		</div>
+		<div><?php echo Mage::getStoreConfig('shippingcod_section/shippingcod_group/addnl_text'); ?></div>
+	</div>
+</div>
+<!--Do not make any chnage after this line, otherwise module will not work. -->
+<script language="javascript" type="text/javascript">
+	var codeurl = '<?php echo $this->getUrl('shippingcodajax') ?>';
+	<?php $sitesurl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA); ?>
+	var loadingimg = '<?php echo(substr($sitesurl, -1) == '/' ? $sitesurl : $sitesurl.'/').'shippingcod/loading.gif'?>';
+	var loadcod = '<?php echo Mage::getSingleton('asifhussain_shippingcod/postcode')->_checkCodMod();?>';
+	var scj = jQuery.noConflict();
+	scj(document).ready(function(){
+		
+		function setCookie(cname, cvalue, exdays) {
+	        var d = new Date();
+	        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+	        var expires = "expires=" + d.toUTCString();
+	        document.cookie = cname + "=" + cvalue + "; " + expires
+	    }
+		
+		function getCookie(cname) {
+	        var name = cname + "=";
+	        var ca = document.cookie.split(';');
+	       for(var i=0; i<ca.length; i++) {
+	            var c = ca[i];
+	            while (c.charAt(0) == ' ') c = c.substring(1);
+	            if (c.indexOf(name) == 0) {
+	                return c.substring(name.length, c.length)
+	            }
+	        }
+	        return "";
+	    }
+		
+		function checkCookie() {
+	        var cookpin = getCookie("chkpincode");
+	        if (cookpin != "") {
+	            scj("#strPinCode").val(cookpin);
+	            setTimeout(function() {
+	                scj("#btnPostCheck").trigger('click')
+	            }, 500)
+	        } else {
+	            var npin = scj("#strPinCode").val();
+	            if (npin != "" && npin != null) {
+	                setCookie("chkpincode", npin, 365)
+	            }
+	        }
+	    }
+		checkCookie();
+		
+		function bindchngage() {
+	        scj("#btnchngzip").on('click', function() {
+	            scj("#pstResult").empty();
+	            scj("#pincheck1").show()
+	        })
+	    }
+		
+		scj("#btnPostCheck").click(function() {
+	        if (loadcod == 'false' || loadcod == '' || loadcod == false || loadcod == 0 || loadcod == '0') {
+	            scj("#ermsg").text('Invalid license');
+	            return false
+	        }
+	        var qstrPinCode = scj("#strPinCode").val();
+	        if (qstrPinCode.trim() == '') {
+	            scj("#ermsg").text('Please enter the postcode')
+	        } else {
+	            scj("#ermsg").text('');
+	            var sldng = loadingimg;
+				scj("#pincheck1").before('');
+				scj.ajax({
+	                url: codeurl,
+	                dataType: "html",
+	                data: {
+	                    pincode: qstrPinCode,
+	                },
+	                success: function(data) {
+	                    scj("#ldng").remove();
+	                    scj("#pincheck1").hide();
+	                    scj("#pstResult").html(data);
+	                    setCookie("chkpincode", qstrPinCode, 365);
+	                    bindchngage();
+	                }
+	            });
+			}
+		});
+	});
+</script>
+<?php } ?>

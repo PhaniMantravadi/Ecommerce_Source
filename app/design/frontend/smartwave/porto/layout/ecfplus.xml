@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<layout version="1.0.0">
+	<default>
+		<reference name="head">
+			<action method="addItem"><type>skin_css</type><name>ecfplus/ecfplus.css</name><params/></action>
+			<action method="addItem" ifconfig="ecfplus_tab/ecfplus_setting/ecfplus_js_config">
+					<type>skin_js</type>
+					<name>ecfplus/js/jquery.js</name>
+					<params/>
+			</action> 
+			<action method="addItem"><type>skin_js</type><name>ecfplus/js/ecfplus.js</name><params/></action>
+		</reference>
+		
+		 <reference name="content">
+			<block type="ecfplus/formlist" name="ecfplus"  template="ecfplus/ecfpluspopup.phtml"/>
+		</reference> 		
+	</default>
+</layout>

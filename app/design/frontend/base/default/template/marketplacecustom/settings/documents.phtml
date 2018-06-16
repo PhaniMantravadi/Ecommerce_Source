@@ -1,0 +1,84 @@
+<?php $countryList = Mage::getModel('directory/country')->getResourceCollection()
+->loadByStore();
+$loggedUser = Mage::getSingleton( 'customer/session', array('name' => 'frontend') );
+$customer = Mage::getModel('customer/customer')->load($loggedUser->getCustomer()->getEntityId());
+?>
+<div class="container vendor-container">
+    <div class="row">
+        <div class="col-md-12">
+            <form action="<?php echo Mage::getUrl('supplierfrontendproductuploader/settings/uploadDocuments') ?>" method="post" class="form-horizontal" id="registerForm" accept-charset="utf-8" enctype="multipart/form-data">
+                <div class="col-md-12">
+                    <div class="control-group">
+                        <label for="pan_document_upload" class="control-label">
+                            <?php echo $this->__('PAN Document Upload'); ?>
+                        </label>
+                        <div class="controls"><input name="pan_document" type="file" value="" id="pan_document_upload" class="input-text<?php echo (!$customer->getData('pan_document')) ? ' required-entry' : '' ?>"></div>
+                        <?php if($customer->getData('pan_document')): ?>
+                            <p class="help-block"><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'documents/pan_document/'.$customer->getData('pan_document'); ?>">Download</a></p>
+                        <?php endif; ?>
+                    </div>
+                    <div class="control-group">
+                        <label for="vat_document_upload" class="control-label">
+                            <?php echo $this->__('VAT Document Upload'); ?>
+                        </label>
+                        <div class="controls"><input name="vat_document" type="file" value="" id="vat_document_upload" class="input-text<?php echo (!$customer->getData('vat_document')) ? ' required-entry' : '' ?>"></div>
+                        <?php if($customer->getData('vat_document')): ?>
+                            <p class="help-block"><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'documents/vat_document/'.$customer->getData('vat_document'); ?>">Download</a></p>
+                        <?php endif; ?>
+                    </div>
+                    <div class="control-group">
+                        <label for="tin_document_upload" class="control-label">
+                            <?php echo $this->__('TIN Document Upload'); ?>
+                        </label>
+                        <div class="controls"><input name="tin_document" type="file" value="" id="tin_document_upload" class=""></div>
+                        <?php if($customer->getData('tin_document')): ?>
+                            <p class="help-block"><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'documents/tin_document/'.$customer->getData('tin_document'); ?>">Download</a></p>
+                        <?php endif; ?>
+                    </div>
+                    <div class="control-group">
+                        <label for="bank_can_chq" class="control-label">
+                            <?php echo $this->__('Bank Can Chq'); ?>
+                        </label>
+                        <div class="controls">
+                            <div class="controls"><input name="bank_can_chq" type="file" value="" id="bank_can_chq" class=""></div>
+                            <?php if($customer->getData('bank_can_chq')): ?>
+                                <p class="help-block"><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'documents/bank_can_chq/'.$customer->getData('bank_can_chq'); ?>">Download</a></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="other_document_upload" class="control-label">
+                            <?php echo $this->__('Other Document Upload'); ?>
+                        </label>
+                        <div class="controls">
+                            <div class="controls"><input name="other_document" type="file" value="" id="other_document_upload" class=""></div>
+                            <?php if($customer->getData('other_document')): ?>
+                                <p class="help-block"><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'documents/other_document/'.$customer->getData('other_document'); ?>">Download</a></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="other_document_upload_2" class="control-label">
+                            <?php echo $this->__('Other Document Upload'); ?>
+                        </label>
+                        <div class="controls">
+                            <div class="controls"><input name="other_document_2" type="file" value="" id="other_document_upload_2" class=""></div>
+                            <?php if($customer->getData('other_document_2')): ?>
+                                <p class="help-block"><a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'documents/other_document_2/'.$customer->getData('other_document_2'); ?>">Download</a></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions col-md-4">
+                    <button type="submit" class="btn btn-large btn-primary"><?php echo $this->__('Register'); ?></button>
+                </div>
+            </form>
+        </div> <!-- .span8 -->
+    </div>
+</div>
+
+<script type="text/javascript">
+    //< ![CDATA[
+    var customForm = new VarienForm('registerForm');
+    //]]>
+</script>

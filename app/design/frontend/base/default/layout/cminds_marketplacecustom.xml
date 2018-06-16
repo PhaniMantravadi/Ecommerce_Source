@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<layout version="1.0.0">
+    <cminds_supplierfrontendproductuploader_login_index>
+        <remove name="right"/>
+        <remove name="left"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+            <block type="core/messages" name="global_messages" as="global_messages"/>
+        </reference>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/supplierfrontendproductuploader/bootstrap.min.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/supplierfrontendproductuploader/custom.css</stylesheet></action>
+        </reference>
+        <reference name="content">
+            <reference name="cminds_supplierfrontendproductuploader.login_index">
+                <action method="setTemplate">
+                    <template>marketplacecustom/login/form.phtml</template>
+                </action>
+            </reference>
+            <block type="core/template" name="cminds_supplierfrontendproductuploader.register_index"
+                   template="marketplacecustom/register/form.phtml"/>
+        </reference>
+    </cminds_supplierfrontendproductuploader_login_index>
+
+    <cminds_supplierfrontendproductuploader_register_step2>
+        <remove name="right"/>
+        <remove name="left"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+            <block type="core/messages" name="global_messages" as="global_messages"/>
+        </reference>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/supplierfrontendproductuploader/bootstrap.min.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/supplierfrontendproductuploader/custom.css</stylesheet></action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="cminds_supplierfrontendproductuploader.register_step2"
+                   template="marketplacecustom/register/step2.phtml"/>
+        </reference>
+    </cminds_supplierfrontendproductuploader_register_step2>
+    <cminds_supplierfrontendproductuploader_settings_documents>
+        <remove name="right"/>
+        <remove name="left"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+            <block type="core/messages" name="global_messages" as="global_messages"/>
+        </reference>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/supplierfrontendproductuploader/bootstrap.min.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/supplierfrontendproductuploader/custom.css</stylesheet></action>
+        </reference>
+        <reference name="content">
+            <block type="supplierfrontendproductuploader/navbar" name="supplierfrontendproductuploader_nav" template="marketplace/nav.phtml"/>
+            <block type="core/template" name="cminds_supplierfrontendproductuploader.register_step3"
+                   template="marketplacecustom/settings/documents.phtml"/>
+        </reference>
+    </cminds_supplierfrontendproductuploader_settings_documents>
+</layout>

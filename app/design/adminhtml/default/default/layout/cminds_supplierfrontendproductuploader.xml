@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<layout version="1.0.0">
+    
+    <adminhtml_sales_order_view>
+        <reference name="order_items">
+            <action method="setTemplate">
+                <template>supplierfrontendproductuploader/admin/items.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>default</type>
+                <block>adminhtml/sales_order_view_items_renderer_default</block>
+                <template>supplierfrontendproductuploader/admin/items/renderer/default.phtml</template>
+            </action>
+
+        </reference>
+    </adminhtml_sales_order_view>
+</layout>

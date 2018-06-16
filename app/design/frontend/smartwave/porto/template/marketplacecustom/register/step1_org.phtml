@@ -1,0 +1,73 @@
+<?php $col = Mage::getModel('catalog/category')
+    ->getCollection()
+    ->addFieldToFilter('is_active',array("in"=>array('0', '1')))
+    ->addAttributeToSelect('*'); ?>
+<div class="container vendor-container">
+    <h2><?php echo $this->__("Register with us"); ?></h2>
+    <div class="row">
+        <div class="col-md-8">
+            <form action="<?php echo Mage::getUrl('supplierfrontendproductuploader/register/createpost') ?>" method="post" class="form-horizontal" id="registerForm" accept-charset="utf-8">
+                <div class="control-group">
+                    <input type="hidden" name="firstname" value="first name">
+                    <input type="hidden" name="lastname" value="last name">
+                    <input type="hidden" name="group_id" value="<?php echo Mage::getStoreConfig('supplierfrontendproductuploader_catalog/login/register_customer_group'); ?>">
+                    <label for="shop_name" class="control-label">
+                        <?php echo $this->__('Shop Name'); ?><em class="text-error">*</em>
+                    </label>
+                    <div class="controls"><input name="shop_name" type="text" id="shop_name" class="input-text required-entry"></div>
+                </div>
+                <div class="control-group">
+                    <label for="seller_category" class="control-label">
+                        <?php echo $this->__('Seller Category'); ?><em class="text-error">*</em>
+                    </label>
+                    <div class="controls">
+                        <select name="seller_category" id="seller_category">
+
+                            <?php foreach($col AS $category) : ?>
+                                <option value="<?php echo $category->getId(); ?>"><?php echo $category->getName(); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="phone" class="control-label">
+                        <?php echo $this->__('Mobile Number'); ?><em class="text-error">*</em>
+                    </label>
+                    <div class="controls">
+                        <div class="controls"><input name="mobile_number" type="text" value="" id="phone" class="input-text validate-phoneLax"></div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="email" class="control-label">
+                        <?php echo $this->__('Email Address'); ?><em class="text-error">*</em>
+                    </label>
+                    <div class="controls"><input name="email" type="text" value="" id="email" class="input-text required-entry validate-email"></div>
+                </div>
+
+                <div class="control-group">
+                    <label for="city" class="control-label">
+                        <?php echo $this->__('Password'); ?><em class="text-error">*</em>
+                    </label>
+                    <div class="controls"><input name="password" type="password" value="password" id="password" class="input-text required-entry validate-password"></div>
+                </div>
+
+                <div class="control-group">
+                    <label for="country" class="control-label">
+                        <?php echo $this->__('Confirm Password'); ?><em class="text-error">*</em>
+                    </label>
+                    <div class="controls"><input name="confirmation" type="password" value="" id="confirmation" class="input-text required-entry required-entry validate-cpassword"></div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-large btn-primary"><?php echo $this->__('Register'); ?></button>
+                </div>
+            </form>
+        </div> <!-- .span8 -->
+    </div>
+</div>
+
+<script type="text/javascript">
+    //< ![CDATA[
+    var customForm = new VarienForm('registerForm');
+    //]]>
+</script>

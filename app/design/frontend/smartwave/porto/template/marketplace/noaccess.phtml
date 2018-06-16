@@ -1,0 +1,13 @@
+<div class="container-fluid main-container vendor-container">
+<h2 style="text-align: center">
+    <?php
+        $helper = $this->helper('marketplace');
+        $msg = 'You account is still in approval process.';
+        if (!$helper->isSupplierUploadedDocument()) {
+            $msg .= 'Please upload the required documents to make the approval process faster.<br>Please click on link <a href="
+            '.Mage::getUrl('supplierfrontendproductuploader/settings/documents').'">Upload Document</a> for uploading the document.';
+        }
+    ?>
+    <?php echo $this->__($msg); ?>
+</h2>
+</div>

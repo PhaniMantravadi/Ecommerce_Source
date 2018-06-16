@@ -1,0 +1,75 @@
+<?php 
+$ecfplusOptionsExist = $this->ecfplusOptionsExist();
+$formId = $this->getData('enable_ecfplusform');	
+$formIdName = $this->formName($formId);
+$formEnable = $this->formEnable($formId);
+$thankyouMessage =  $this->thankyouMessage($formId);
+$url = Mage::getBaseUrl()."ecfplus/index/add";
+if( (!empty($ecfplusOptionsExist) )&& ($formEnable == 1) )
+{
+?>
+	<div id="mainform_<?php echo $formId?>" class="col-main">	 
+		<form  id="ecfplusform_<?php echo $formId?>" class="ecfplusformpro" method="post">
+			<div class="fieldset">				
+				<h2 class="legend"><?php echo $this->__($formIdName);?></h2>
+				<ul class="form-list"> 
+					<?php echo $this->ecfplusOptions();?>						
+				</ul>
+				<input type="hidden"  value="<?php echo $formId?>" name="formid">
+				<input type="hidden"  value="<?php echo Mage::app()->getStore()->getId()?>" name="storeid">
+			</div>
+			<div class="buttons-set">
+				<p class="required">* Required Fields</p>				
+				<button class="button" id="submitButton_<?php echo $formId?>" type="submit">
+					<span>
+						<span><?php echo $this->__('Submit');?></span>
+					</span>
+				</button>
+			</div>
+		</form>
+	</div>
+	<div id="thankyou_message_<?php echo $formId?>" class="col-main">		
+		<div class="fieldset">			
+			<?php echo $thankyouMessage?>
+		</div>	
+	</div>
+	<div id="feedback_<?php echo $formId?>"></div>
+	<script type="text/javascript">  
+        // <![CDATA[  
+		jQuery.noConflict();
+		var contactForm_<?php echo $formId?>= new VarienForm('ecfplusform_<?php echo $formId?>', true);
+        document.observe('dom:loaded', function() { 
+			$('thankyou_message_<?php echo $formId?>').hide();
+            function sendForm(event){  
+               // we stop the default submit behaviour  
+                Event.stop(event);  
+				if (contactForm_<?php echo $formId?>.validator.validate()){
+                var oOptions = {  
+                    method: "POST",  
+                    parameters: Form.serialize('ecfplusform_<?php echo $formId?>'),  
+                    asynchronous: true,  
+                    onFailure: function (oXHR) {  
+                        $('feedback_<?php echo $formId?>').update(oXHR.statusText);  
+                    },  
+                    onLoading: function (oXHR) {  
+                        $('feedback_<?php echo $formId?>').update('Sending data ... <img src="<?php echo $this->getSkinUrl('ecfplus/loadingBar.gif');; ?>" title="Loading..." alt="Loading..." border="0" />');  
+                    },                            
+                    onSuccess: function(oXHR) {  
+                       $('feedback_<?php echo $formId?>').update(oXHR.responseText);
+						$('mainform_<?php echo $formId?>').hide();
+						$('thankyou_message_<?php echo $formId?>').show();
+                    }                 
+                };  
+                var oRequest = new Ajax.Updater({success: oOptions.onSuccess.bindAsEventListener(oOptions)}, "<?php echo $url?>", oOptions);
+				}
+            }  
+           Event.observe('submitButton_<?php echo $formId?>', 'click', sendForm, true);
+		   });
+        // ]]>  
+</script>
+<?php } ?>
+
+
+ 
+
+ 

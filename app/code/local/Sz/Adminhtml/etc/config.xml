@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Sz_Adminhtml>
+            <version>0.1.0</version>
+        </Sz_Adminhtml>
+    </modules>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <sz_adminhtml before="Mage_Adminhtml">Sz_Adminhtml</sz_adminhtml>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <global>
+        <blocks>
+            <sz_adminhtml>
+                <class>Sz_Adminhtml_Block</class>
+            </sz_adminhtml>
+            <adminhtml>
+                <rewrite>
+                    <catalog_product_grid>Sz_Adminhtml_Block_Catalog_Product_Grid</catalog_product_grid>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        <helpers>
+            <sz_adminhtml>
+                <class>Sz_Adminhtml_Helper</class>
+            </sz_adminhtml>
+        </helpers>
+        <models>
+            <sz_adminhtml>
+                <class>Sz_Adminhtml_Model</class>
+            </sz_adminhtml>
+        </models>
+    </global>
+</config>

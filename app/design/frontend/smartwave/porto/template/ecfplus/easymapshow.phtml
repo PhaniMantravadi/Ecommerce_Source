@@ -1,0 +1,88 @@
+
+<?php
+$ecfplusHelper = Mage::helper("ecfplus/data");
+$ecfplusActivation = $ecfplusHelper->ecfplusActive();
+if($ecfplusActivation == 1)
+{
+	$address = $this->address();
+	if($address){
+	$markerUrl = json_decode($this->getMarker(),true);
+	$totalMarker = json_decode($address,true);
+	
+	?>
+		<head>
+			<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+			<title>Google Maps API Sample</title>
+			<script src="//maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAuPsJpk3MBtDpJ4G8cqBnjRRaGTYH6UMl8mADNa0YKuWNNa8VNxQCzVBXTx2DYyXGsTOxpWhvIG7Djw" type="text/javascript"></script>
+			<script type="text/javascript">
+
+			function initialize() {
+			  if (GBrowserIsCompatible()) {
+				var map = new GMap2(document.getElementById("map_canvas"));
+				
+				map.addControl(new GSmallMapControl());
+				map.addControl(new GMapTypeControl());
+
+				// Create a base icon for all of our markers that specifies the
+				// shadow, icon dimensions, etc.
+				var baseIcon = new GIcon(G_DEFAULT_ICON);
+				baseIcon.shadow = "http://www.google.com/mapfiles/shadow.png";
+				baseIcon.iconSize = new GSize(30, 50);
+				baseIcon.shadowSize = new GSize(37, 34);
+				baseIcon.iconAnchor = new GPoint(9, 34);
+				baseIcon.infoWindowAnchor = new GPoint(9, 2);
+
+				// Creates a marker whose info window displays the letter corresponding
+				// to the given index.
+				function createMarker(point, index, address) {
+				   // Create a lettered icon for this point using our icon class
+				  //var letter = String.fromCharCode("A".charCodeAt(0) + index);
+				  var letteredIcon = new GIcon(baseIcon);
+				  if(index)
+				  {
+					  letteredIcon.image = index;
+					}
+					else
+					{
+						letteredIcon.image = "<?php echo $this->getSkinUrl('ecfplus/icon/images1.png')?>";
+					}
+				  // Set up our GMarkerOptions object
+				  markerOptions = { icon:letteredIcon,
+									content:"hello"
+									};
+				  var marker = new GMarker(point, markerOptions);
+						GEvent.addListener(marker, "mouseover", 
+						function() 
+						{
+							marker.openInfoWindowHtml(address);
+						});
+					return marker;
+				}
+					 
+		<?php
+			foreach($totalMarker as $add)
+				{?>
+				
+					var lat = <?php echo $add['latitude']; ?>;
+					var lng = <?php echo $add['longitude']; ?>;
+					var mark = '<?php echo $markerUrl[0]['background_image'] ?>';')?>';
+					var addre = '<?php echo $add['address']; ?>';
+					var latlng = new GLatLng(lat,lng);
+					var marker = mark;
+					var address = addre;
+					map.setCenter(new GLatLng(lat, lng), 6);
+					map.addOverlay(createMarker(latlng,marker,address));
+				<?php
+				}
+	
+	
+	?>
+			}
+			}
+
+			</script>
+		</head>
+			<body onload="initialize()" onunload="GUnload()" style="font-family: Arial;border: 0 none;">
+			<div id="map_canvas" style="width: 100%; height: 500px"></div>
+		</body>
+		<?php }  } ?>

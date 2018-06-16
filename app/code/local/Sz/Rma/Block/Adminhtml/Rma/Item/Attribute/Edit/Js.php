@@ -1,0 +1,67 @@
+<?php
+/**
+ * Magento Sz Edition
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magento Sz Edition License
+ * that is bundled with this package in the file LICENSE_EE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magentocommerce.com/license/sz-edition
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    Sz
+ * @package     Sz_Rma
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://www.magentocommerce.com/license/sz-edition
+ */
+
+
+/**
+ * RMA Items Attributes Edit JavaScript Block
+ *
+ * @category    Sz
+ * @package     Sz_Rma
+ * @author      Magento Core Team <core@magentocommerce.com>
+ */
+class Sz_Rma_Block_Adminhtml_Rma_Item_Attribute_Edit_Js
+    extends Mage_Adminhtml_Block_Template
+{
+    /**
+     * Retrieve allowed Input Validate Filters in JSON format
+     *
+     * @return string
+     */
+    public function getValidateFiltersJson()
+    {
+        return Mage::helper('core')->jsonEncode(Mage::helper('sz_rma/eav')->getAttributeValidateFilters());
+    }
+
+    /**
+     * Retrieve allowed Input Filter Types in JSON format
+     *
+     * @return string
+     */
+    public function getFilteTypesJson()
+    {
+        return Mage::helper('core')->jsonEncode(Mage::helper('sz_rma/eav')->getAttributeFilterTypes());
+    }
+
+    /**
+     * Returns array of input types with type properties
+     *
+     * @return array
+     */
+    public function getAttributeInputTypes()
+    {
+        return Mage::helper('sz_rma/eav')->getAttributeInputTypes();
+    }
+}

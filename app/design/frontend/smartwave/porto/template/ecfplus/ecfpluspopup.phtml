@@ -1,0 +1,115 @@
+<?php
+// Initialized the helper function
+$ecfplusHelper = Mage::helper("ecfplus/data");
+
+$ecfplusActivation = $ecfplusHelper->ecfplusActive();
+$ecfplusPosition = $ecfplusHelper->ecfplusPosition();
+
+$ecfplusContactInfo = $ecfplusHelper->ecfplusContactInfo();
+$ecfplusContactContent = $ecfplusHelper->ecfplusContactContent();
+
+$ecfplusTitleTheme = $ecfplusHelper->ecfplusTitlePallet();
+$ecfplusContentTheme = $ecfplusHelper->ecfplusContentPallet();
+$ecfplusSubmitTheme = $ecfplusHelper->ecfplusSubmitPallet();
+
+$formId = $ecfplusHelper->ecfplusForm();	
+$formIdName = $this->formName($formId);
+$thankyouMessage =  $this->thankyouMessage($formId);
+$formEnable = $this->formEnable($formId);
+$ecfplusPopupOptionsExist = $this->ecfplusPopupOptionsExist($formId);
+// Base URL
+$urlData = $this->getUrl('ecfplus/index/add');
+
+// Loading Image
+$ImageLoadUrl = $this->getSkinUrl('ecfplus/loadingBar.gif');
+
+
+if($ecfplusActivation  == 1 and !empty($ecfplusPopupOptionsExist) and $formEnable == 1 )
+{
+
+?>
+	<div class="ecfPlus ecfPlus-<?php echo $ecfplusPosition; if(!$ecfplusContactInfo) { echo ' mw'; } ?> " >
+		<div class="ecForm ecForm-<?php echo $ecfplusPosition; ?>" style="background-color:<?php echo $ecfplusContentTheme?>;border-top-color:<?php echo $ecfplusContentTheme?> ; border-bottom:20px solid <?php echo $ecfplusContentTheme?>;" >
+			<form class="formMain" id="ecfplus">
+				<div class="contact_us_content_view" >
+					<div id="contactSuccess" ><?php echo $this->__($thankyouMessage); ?></div> 			
+					<div id="contactFailure" ><?php echo $this->__("Please Try Again After Some Time..."); ?></div> 
+					<div id="contact_us_form">
+						<?php echo $this->ecfplusPopupOptions($formId);?>
+						<input type="hidden"  value="<?php echo $formId?>" name="formid">
+						<input type="hidden"  value="<?php echo Mage::app()->getStore()->getId()?>" name="storeid">
+						<div class="clearfix"></div>
+						<button id="submit_button" class="ecfSend"  style = "background-color:<?php echo $ecfplusSubmitTheme ?>">Send</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<?php if($ecfplusContactInfo == 1){?>
+		<div class="ecInfo-CL">
+			<div class="infoContent-CL">
+				
+				<?php echo $ecfplusContactContent ?>
+				
+				
+			</div>
+		</div>
+		<?php } ?>
+		<div class="ecButton-<?php echo $ecfplusPosition; ?>" style = "background-color:<?php echo $ecfplusTitleTheme ?>" >
+			<div class="buttonSym-<?php echo $ecfplusPosition;?>">
+				<span class="symCross">x</span>
+				<span class="symPlus">+</span>
+			</div>
+			<div class="buttonContent-<?php echo $ecfplusPosition; ?>">
+				<div class="ccontent-<?php echo $ecfplusPosition; ?>" ><?php echo $this->__($formIdName);?></div>
+			</div>			
+		</div>
+		<div class="clearfix"></div>
+	</div> 
+
+	<script type="text/javascript">
+	jQuery = jQuery.noConflict();
+		
+		var contactForm= new VarienForm('ecfplus', true);
+        document.observe('dom:loaded', function() {			
+            function sendForm(event){  
+               // we stop the default submit behaviour  
+                Event.stop(event);  
+				if (contactForm.validator.validate()){
+                var oOptions = {  
+                    method: "POST",  
+                    parameters: Form.serialize('ecfplus'),  
+                    asynchronous: true,  
+                    onFailure: function (oXHR) {
+					   jQuery('.contact_loading_image').hide();
+                       jQuery('#contactFailure').show();				 	  
+                    },  
+                    onLoading: function (oXHR) { 
+						jQuery('.contact_loading_image').show();                      
+                    },                            
+                    onSuccess: function(oXHR) {										
+						jQuery('.contact_loading_image').hide();                    					  
+						jQuery('#contact_us_form').hide();
+						jQuery('#contactSuccess').show();					
+                    }                 
+                };  
+                var oRequest = new Ajax.Updater({success: oOptions.onSuccess.bindAsEventListener(oOptions)}, "<?php echo $urlData?>", oOptions);
+				}
+            }  
+           Event.observe('submit_button', 'click', sendForm, true);
+		   }); 
+		   
+		   
+		   
+		   
+		   
+		   
+        // ]]> 
+		
+		 <?php if($ecfplusContactInfo == 0){ ?>		
+		jQuery('.ecfPlus-CL').css('left','-345px');
+		<?php } ?>
+	</script>
+	
+<?php
+}
+?>

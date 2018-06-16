@@ -1,0 +1,84 @@
+<?php if(Mage::getSingleton('customer/session')->isLoggedIn()) {
+    $customer = Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId());
+} else {
+    $customer = new Varien_Object();
+}
+?>
+<div class="box-account box-info">
+    <div class="box-head">
+        <h2><?php echo $this->__('Account Information');?></h2>
+    </div>
+    <div class="col2-set">
+        <div class="col-1">
+            <div class="box">
+                <div class="box-title">
+                    <h3><?php echo $this->__('General Information');?></h3>
+                    <a href="<?php echo Mage::getUrl('marketplace/settings/generalInfoEdit') ?>">Edit</a>
+                </div>
+                <div class="box-content">
+                    <div class="left" style="width:200px;">
+                        <?php if(Mage::helper('marketplace')->getSupplierLogo()): ?>
+                            <img src="<?php echo Mage::helper('marketplace')->getSupplierLogo(); ?>" alt="" class="avatar img-circle img-thumbnail" style="width: 80px"/>
+
+                        <?php endif; ?>
+                    </div>
+                    <div class="left">
+                        <p>
+                            <span><?php echo $this->__('Name'); ?>&nbsp;&nbsp;&nbsp;:</span><?php echo $this->escapeHtml($customer->getName()) ?><br />
+                            <span><?php echo $this->__('Email'); ?>&nbsp;&nbsp;&nbsp;:</span><?php echo $this->escapeHtml($customer->getEmail()) ?><br />
+                            <span><?php echo $this->__('Shop Name'); ?>&nbsp;:</span><?php echo $this->escapeHtml($customer->getShopName()) ?><br />
+                            <span><?php echo $this->__('Mobile Number'); ?>&nbsp;:</span><?php echo $this->escapeHtml($customer->getMobileNumber()) ?><br />
+                            <span><?php echo $this->__('About Shop'); ?>&nbsp;:</span><?php echo $this->escapeHtml($customer->getAboutShop()) ?><br />
+                            <br />
+                            <br />
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="box">
+                <div class="box-title">
+                    <h3><?php echo $this->__('Bank Information');?></h3>
+                    <a href="<?php echo Mage::getUrl('marketplace/settings/bankinfoedit') ?>">Edit</a>
+                </div>
+                <div class="box-content">
+                    <p>
+                        <span><?php echo $this->__('Bank Name'); ?>&nbsp;&nbsp;&nbsp;:</span><?php echo $this->escapeHtml($customer->getBankName()) ?><br />
+                        <span><?php echo $this->__('Bank Account Number'); ?>&nbsp;:</span><?php echo $this->escapeHtml($customer->getBankAccount()) ?><br />
+                        <span><?php echo $this->__('Bank Address'); ?>&nbsp;&nbsp;:</span><?php echo $this->escapeHtml($customer->getBranchAddress()) ?><br />
+                        <span><?php echo $this->__('IFSC Code/SORT Code'); ?>&nbsp;:</span><?php echo $this->escapeHtml($customer->getIfscCode()) ?><br />
+                        <span><?php echo $this->__('VAT/TIN'); ?>&nbsp;&nbsp;&nbsp;:</span><?php echo $this->escapeHtml($customer->getVat()) ?><br />
+                        <span><?php echo $this->__('PAN Number'); ?>&nbsp;&nbsp;:</span><?php echo $this->escapeHtml($customer->getPan()) ?><br />
+                        <span><?php echo $this->__('CST'); ?>&nbsp;&nbsp;&nbsp;&nbsp;:</span><?php echo $this->escapeHtml($customer->getCst()) ?><br />
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="col2-set">
+        <div class="box">
+            <div class="box-title">
+                <h3><?php echo $this->__('Address Information');?></h3>
+            </div>
+            <div class="box-content">
+                <div class="col-1">
+                    <h4><?php echo $this->__('Registered Office Address');?></h4>
+                    <address>
+                        <?php echo $customer->getPrimaryBillingAddress()->format('html');?>
+                        <a href="<?php echo Mage::getUrl('marketplace/settings/addressedit', array('type'=>1)) ?>">Edit Address</a>
+                    </address>
+                </div>
+                <div class="col-2">
+                    <h4><?php echo $this->__('Local Office Address');?></h4>
+                    <address>
+                        <?php echo $customer->getPrimaryShippingAddress()->format('html');?>
+                        <a href="<?php echo Mage::getUrl('marketplace/settings/addressedit', array('type'=>2)) ?>">Edit Address</a>
+                    </address>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

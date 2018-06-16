@@ -1,0 +1,122 @@
+
+<div class="container main-container vendor-container">
+
+    <h1 class="text-center"><?php echo $this->__('Upload Attributes'); ?></h1>
+    <div class="row">
+        <div class="col-md-12 form-container">
+            <form name="import_csv_attributes" id="import_csv_attributes" action="<?php echo Mage::getUrl('*/*/*') ?>" method="post" enctype="multipart/form-data">
+                <input type="hidden" value="<?php echo time(); ?>" name="salt"/>
+                <input name="attributeSetId" id="attributeSetId" value="<?php echo $this->getSelectedAttributeSetId(); ?>" type="hidden"/>
+                        
+                
+                        <div class="col-md-12">
+                            <h4><?php echo $this->__('Select Attributes Set');?></h4>
+                            <select id="attributesetchoose" name="attributesetchoose" onchange="hiddenAttributeValue()">
+                                <option selected value="0"></option>
+                                <?php $entityType = Mage::getModel('catalog/product')->getResource()->getTypeId();
+                                       $collection = Mage::getResourceModel('eav/entity_attribute_set_collection')->setEntityTypeFilter($entityType)->addFieldToFilter('available_for_supplier', 1);
+                                       foreach($collection AS $attributeSet): ?>
+                                        <option <?php if($attributeSet->getAttributeSetId() == $this->getSelectedAttributeSetId()) { echo 'selected="selected"';}?>  value="<?php echo $attributeSet->getAttributeSetId();?>">
+                                            <?php echo $attributeSet->getAttributeSetName(); ?>
+                                        </option>
+                                        <?php endforeach; ?>
+                            </select>
+                            
+                        </div>
+                <?php if($this->isUploadDone()){ ?>
+                    <div id="choice" style="display: block;">
+                <?php } else { ?>
+                        <div id="choice" style="display: none;">
+                <?php } ?>
+                <div class="row">
+                    <div class="col-md-12">
+                          
+                        <p class="lead"><?php echo $this->__('Store admin provides various options for the attributes.'); ?>
+                            <a class="download_csv" id="download" onclick="download_csv('<?php echo Mage::getUrl('marketplace/import/downloadAttributeCsv') ?>')"
+                               href="javascript:void(0);">
+                                <?php echo $this->__('Download');?> </a><?php echo $this->__('CSV schema.')?>
+                        </p>
+
+                        <p class="lead">
+                        <div>
+                            <h4><?php echo $this->__('A) Steps For Creating New Product Attribute'); ?></h4>
+                            <ul>
+                                <li><?php echo $this->__('1. Upload Attribute CSV')?></li>
+                            </ul>
+                        </div>
+                        </p>
+                        <p class="lead">
+                        <div>
+                            <h4><?php echo $this->__('B) Steps For Editing Exiting Product Attribute'); ?></h4>
+                            <ul>
+                                <li><?php echo $this->__('1. Download existing created product attributes CSV.') ?> (<a class="download_csv" id="download" onclick="download_csv('<?php echo Mage::getUrl('marketplace/import/exportAttributeCsv') ?>')"
+                                                                                                             href="javascript:void(0);"><?php echo $this->__('Export Attribute CSV');?></a>)</li>
+                                <li><?php echo $this->__('2. Update Data In CSV Sheet (Remove unwanted attribute rows to make process faster.)')?></li>
+                                <li><?php echo $this->__('3. Upload Updated Product Attribute CSV')?></li>
+                            </ul>
+                        </div>
+                        </p>
+                        <?php if(ini_get('allow_url_fopen') == 0) : ?>
+                        <div class="alert alert-danger" role="alert"><?php echo $this->__('Your server has disabled option <strong>allow_url_fopen</strong>, it can be problem to download assigned images'); ?></div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <div class="clear"></div>
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-sm-offset-4 col-md-offset-4">
+                        <h4><?php echo $this->__('Attribute CSV'); ?></h4>
+                        <input type="file" name="file" style='margin: 20px 0'>
+                        <input type="submit" name="submit" class="btn btn-primary" id="submit" value="<?php echo $this->__('Start Import') ?>" />
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery('.expand-report').on('click', function(e) {
+            e.preventDefault();
+            var $this = jQuery(this);
+            var $collapse = $this.parent().parent().parent().parent().next();
+            $collapse.slideToggle();
+        });
+        jQuery('.showInstructions').on('click', function() {
+            jQuery(this).prev().slideToggle();
+        });
+        jQuery('#upload-images').MultiFile();
+        jQuery('#attributesetchoose').change(function(){
+            
+            if (jQuery(this).val()=="0") {
+                jQuery('#choice').hide();
+            }
+            else {
+                jQuery('#choice').show();
+            }
+      });
+      
+    });
+    
+    
+</script>
+<script type="text/javascript">
+
+function download_csv(urlHref) {
+    var element = urlHref;
+    var url;
+    var attributesetchoose = document.getElementById('attributesetchoose');
+    if (attributesetchoose.value!==0) {
+        url = element;
+        url = url + 'attributeSetId/' + attributesetchoose.value;
+        window.location = url;
+    } else {
+        alert("Choose Attribute Set");
+    }
+}
+function hiddenAttributeValue() {
+    $('attributeSetId').setValue($('attributesetchoose').getValue());
+}
+</script>

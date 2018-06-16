@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<config>
+  <menu>
+    <asifhussain_shippingcod translate="title" module="asifhussain_shippingcod">
+      <title>COD Postcode</title>
+      <sort_order>75</sort_order>
+      <depends>
+        <module>AsifHussain_ShippingCod</module>
+      </depends>
+      <children>
+        <postcode translate="title" module="asifhussain_shippingcod">
+          <title>Manage Postcode</title>
+          <sort_order>10</sort_order>
+          <action>asifhussain_shippingcod_admin/postcode</action>
+        </postcode>
+      </children>
+    </asifhussain_shippingcod>
+  </menu>
+  
+  <!-- Define ACL for access to these menu items. -->
+  <acl>
+    <resources>
+      <admin>
+        <children>
+          <asifhussain_shippingcod translate="title"
+                            module="asifhussain_shippingcod">
+            <title>COD Postcode</title>
+            <sort_order>75</sort_order>
+            <children>
+              <postcode translate="title"
+                                    module="asifhussain_shippingcod">
+                <title>Manage Postcode</title>
+              </postcode>
+              <setup translate="title" module="asifhussain_shippingcod">
+                <sort_order>76</sort_order>
+                <title>Module Setup</title>
+              </setup>
+            </children>
+          </asifhussain_shippingcod>
+          <system>
+            <children>
+              <config>
+                <children>
+                  <shippingcod_section translate="title" module="asifhussain_shippingcod">
+                    <title>Config</title>
+                    <sort_order>100</sort_order>
+                  </shippingcod_section>
+                </children>
+              </config>
+            </children>
+          </system>
+        </children>
+      </admin>
+    </resources>
+  </acl>
+</config>

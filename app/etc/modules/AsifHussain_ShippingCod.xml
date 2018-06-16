@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <AsifHussain_ShippingCod>
+            <active>true</active>
+            <codePool>community</codePool>
+        </AsifHussain_ShippingCod>
+    </modules>
+</config>

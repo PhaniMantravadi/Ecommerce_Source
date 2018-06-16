@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+	<adminhtml_system_config_edit>
+		<update handle="editor"/>
+		<reference name="head">
+			<action method="setCanLoadTinyMce"><load>1</load></action>
+		</reference>
+	</adminhtml_system_config_edit>
+    <ecfplus_adminhtml_multiform_add>
+	    <update handle="editor"/>
+		<reference name="js">
+            <block type="adminhtml/catalog_product_edit_js" template="catalog/product/js.phtml" name="catalog_product_js"></block>
+            <block type="core/template" name="catalog.wysiwyg.js" template="catalog/wysiwyg/js.phtml"/>
+        </reference>
+    </ecfplus_adminhtml_multiform_add>
+	
+	    <ecfplus_adminhtml_manage_index>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="adminhtml/customer_edit_tab_orders" name="adminhtml.customer.edit.tab.orders"/>
+        </block>
+    </ecfplus_adminhtml_manage_index>
+	
+	 <ecfplus_adminhtml_manage_index>
+       <block type="core/text_list" name="root" output="toHtml">
+           <block type="ecfplus/adminhtml_manage_grid" name="manage.grid"/>
+           <block type="adminhtml/widget_grid_serializer" name="grid_serializer">
+               <reference name="grid_serializer">
+                   <action method="initSerializerBlock">
+                       <grid_block_name>manage.grid</grid_block_name>
+					   <data_callback>getSelectedCustomers</data_callback>
+                       <hidden_input_name>links[multiform]</hidden_input_name>
+                       <reload_param_name>multiform</reload_param_name>
+				</action>
+                                 
+               </reference>
+           </block>
+       </block>
+   </ecfplus_adminhtml_manage_index> 
+</layout>

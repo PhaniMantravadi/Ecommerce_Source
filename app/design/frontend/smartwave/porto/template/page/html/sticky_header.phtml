@@ -1,0 +1,73 @@
+<?php
+    $store = Mage::app()->getStore();
+    $code  = $store->getCode();
+?>
+<script type="text/javascript">
+	jQuery(function($){
+		var scrolled = false;
+		//var searchfrom = $('.header-container');
+		
+		$(window).scroll(function(){
+			    if(140<$(window).scrollTop() && !scrolled){
+				    $('.header-container').addClass("sticky-header");
+					
+					$('.header-container .menu-wrapper .mini-cart').remove();
+					
+					
+				   
+				    var minicart = $('.header-container .mini-cart').html();
+					
+					var searchicon = $('.header-container .search-icon').html();										
+					//$('.header-container .search-area').html('');					
+					$('.header-container .menu-wrapper').append('<div class="mini-search search-area"><a class="search-icon" href="javascript:void(0)" onclick="showminisearch()">'+searchicon+'</a><div class="sform"></div></div>');					
+				    $('.header-container .menu-wrapper').append('<div class="mini-cart">'+minicart+'</div>');					
+					$('.header-container #search_mini_form').appendTo('.sform');
+					$('#myContainer').appendTo('.header-wrapper');
+                <?php if(Mage::getStoreConfig('porto_settings/header/sticky_header_logo', $code)): ?>
+                    var logo_image = $('<div>').append($('.header-container .header > .logo').clone()).html();
+                    $('.header-container .menu-wrapper').prepend('<div class="sticky-logo">'+logo_image+'</div>');
+                    <?php if(Mage::getStoreConfig('porto_settings/header/sticky_header_logo_img', $code)):?>
+                    $(".sticky-logo img").attr("src","<?php echo $this->getSkinUrl(Mage::getStoreConfig('porto_settings/header/sticky_header_logo_img', $code)); ?>");
+                    <?php endif; ?>
+                <?php endif; ?>
+				    $('.header-container .header-wrapper > div').each(function(){
+					    if($(this).hasClass("container")){
+						    $(this).addClass("already");
+					    } else {
+						    $(this).addClass("container");
+					    }
+				    });
+				    scrolled = true;
+			    }
+			    if(140>=$(window).scrollTop() && scrolled){
+				    $('.header-container').removeClass("sticky-header");					
+					//$('.header-container .menu-wrapper .mini-search').remove();
+				    $('.header-container .menu-wrapper .mini-cart').remove();					
+					$('.header-wrapper .menu-wrapper .mini-search  #search_mini_form').appendTo('.header-container .header .search-area');
+					$('#myContainer').appendTo('.yui-ac');
+					$('.header-wrapper .menu-wrapper .mini-search.search-area').remove();
+					
+                <?php if(Mage::getStoreConfig('porto_settings/header/sticky_header_logo', $code)): ?>
+                    $('.header-container .menu-wrapper > .sticky-logo').remove();
+                <?php endif; ?>
+				    scrolled = false;
+				    $('.header-container .header-wrapper > div').each(function(){
+					    if($(this).hasClass("already")){
+						    $(this).removeClass("already");
+					    } else {
+						    $(this).removeClass("container");
+					    }
+				    });
+			    }
+		  });
+	});
+	
+	
+function showminisearch(){
+	if(jQuery('.sform').hasClass('show')){
+		jQuery('.sform').removeClass('show');
+	}else{
+		jQuery('.sform').addClass('show');
+	}
+}
+</script>

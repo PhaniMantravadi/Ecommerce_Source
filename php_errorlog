@@ -1,0 +1,248 @@
+[25-Aug-2015 15:20:29 UTC] PHP Fatal error:  Call to a member function count() on a non-object in /home/msoft/public_html/multi/app/design/frontend/base/default/template/reports/product_viewed.phtml on line 36
+[25-Aug-2015 15:20:57 UTC] PHP Fatal error:  Call to a member function count() on a non-object in /home/msoft/public_html/multi/app/design/frontend/base/default/template/reports/product_viewed.phtml on line 36
+[25-Aug-2015 15:23:17 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/msoft/public_html/multi/app/design/frontend/base/default/template/reports/product_viewed.phtml on line 82
+[25-Aug-2015 15:23:42 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/msoft/public_html/multi/app/design/frontend/base/default/template/reports/product_viewed.phtml on line 82
+[25-Aug-2015 15:24:09 UTC] PHP Fatal error:  Call to a member function count() on a non-object in /home/msoft/public_html/multi/app/design/frontend/base/default/template/reports/product_viewed.phtml on line 38
+[25-Aug-2015 15:25:29 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/msoft/public_html/multi/app/design/frontend/base/default/template/reports/product_viewed.phtml on line 27
+[25-Aug-2015 15:26:04 UTC] PHP Fatal error:  Call to a member function count() on a non-object in /home/msoft/public_html/multi/app/design/frontend/base/default/template/reports/product_viewed.phtml on line 53
+[26-Aug-2015 04:25:50 UTC] PHP Fatal error:  Class 'Cminds_Supplierfrontendproductuploader_Model_Mysql4_Setup' not found in /home/msoft/public_html/multi/app/code/core/Mage/Core/Model/Resource/Setup.php on line 234
+[26-Aug-2015 04:26:01 UTC] PHP Fatal error:  Class 'Cminds_Supplierfrontendproductuploader_Model_Mysql4_Setup' not found in /home/msoft/public_html/multi/app/code/core/Mage/Core/Model/Resource/Setup.php on line 234
+[26-Aug-2015 07:38:08 UTC] PHP Fatal error:  Call to a member function getProductUrl() on a non-object in /home/msoft/public_html/multi/app/design/frontend/smartwave/porto/template/filterproducts/product_viewed.phtml on line 37
+[26-Aug-2015 07:38:39 UTC] PHP Fatal error:  Call to a member function getProductUrl() on a non-object in /home/msoft/public_html/multi/app/design/frontend/smartwave/porto/template/filterproducts/product_viewed.phtml on line 37
+[26-Aug-2015 07:43:36 UTC] PHP Fatal error:  Call to a member function count() on a non-object in /home/msoft/public_html/multi/app/design/frontend/smartwave/porto/template/filterproducts/product_viewed.phtml on line 46
+[26-Aug-2015 08:13:08 UTC] PHP Fatal error:  Call to a member function count() on a non-object in /home/msoft/public_html/multi/app/design/frontend/smartwave/porto/template/filterproducts/product_viewed.phtml on line 52
+[26-Aug-2015 08:14:12 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/msoft/public_html/multi/app/design/frontend/smartwave/porto/template/filterproducts/product_viewed.phtml on line 100
+[26-Aug-2015 08:15:34 UTC] PHP Fatal error:  Call to a member function count() on a non-object in /home/msoft/public_html/multi/app/design/frontend/smartwave/porto/template/filterproducts/product_viewed.phtml on line 46
+[26-Aug-2015 08:17:03 UTC] PHP Fatal error:  Call to a member function count() on a non-object in /home/msoft/public_html/multi/app/design/frontend/smartwave/porto/template/filterproducts/product_viewed.phtml on line 46
+[01-Sep-2015 09:27:30 UTC] PHP Parse error:  syntax error, unexpected ';' in /home/msoft/public_html/multi/app/design/frontend/smartwave/porto/template/page/html/header_type4.phtml on line 30
+[02-Sep-2015 10:41:14 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000]: General error: 2006 MySQL server has gone away' in /home/msoft/public_html/multi/lib/Zend/Db/Statement/Pdo.php:228
+Stack trace:
+#0 /home/msoft/public_html/multi/lib/Zend/Db/Statement/Pdo.php(228): PDOStatement->execute(Array)
+#1 /home/msoft/public_html/multi/lib/Varien/Db/Statement/Pdo/Mysql.php(110): Zend_Db_Statement_Pdo->_execute(Array)
+#2 /home/msoft/public_html/multi/app/code/core/Zend/Db/Statement.php(291): Varien_Db_Statement_Pdo_Mysql->_execute(Array)
+#3 /home/msoft/public_html/multi/lib/Zend/Db/Adapter/Abstract.php(480): Zend_Db_Statement->execute(Array)
+#4 /home/msoft/public_html/multi/lib/Zend/Db/Adapter/Pdo/Abstract.php(238): Zend_Db_Adapter_Abstract->query('SELECT `core_se...', Array)
+#5 /home/msoft/public_html/multi/lib/Varien/Db/Adapter/Pdo/Mysql.php(504): Zend_Db_Adapter_Pdo_Abstract->query('SELECT `core_se...', Array)
+#6 /home/msoft/public_html/multi/lib/Zend/Db/Adapter/Abstract.php(828): Varien_Db_Adapter_Pdo_Mysql->query(Objec in /home/msoft/public_html/multi/lib/Zend/Db/Statement/Pdo.php on line 235
+[03-Sep-2015 14:45:04 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/multi/app/code/core/Mage/Core/Block/Abstract.php on line 815
+[03-Sep-2015 14:45:13 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/multi/app/code/core/Mage/Core/Block/Abstract.php on line 815
+[03-Sep-2015 14:45:58 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/multi/app/code/core/Mage/Core/Block/Abstract.php on line 815
+[03-Sep-2015 14:46:26 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/multi/includes/src/__default.php on line 2509
+[03-Sep-2015 14:46:44 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/multi/includes/src/__default.php on line 2509
+[03-Sep-2015 14:49:38 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/multi/includes/src/__default.php on line 2509
+[03-Sep-2015 14:51:43 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/multi/includes/src/__default.php on line 2509
+[03-Sep-2015 14:51:56 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/multi/includes/src/__default.php on line 2509
+[04-Sep-2015 12:13:24 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000]: General error: 2006 MySQL server has gone away' in /home/msoft/public_html/multi/lib/Zend/Db/Statement/Pdo.php:228
+Stack trace:
+#0 /home/msoft/public_html/multi/lib/Zend/Db/Statement/Pdo.php(228): PDOStatement->execute(Array)
+#1 /home/msoft/public_html/multi/lib/Varien/Db/Statement/Pdo/Mysql.php(110): Zend_Db_Statement_Pdo->_execute(Array)
+#2 /home/msoft/public_html/multi/app/code/core/Zend/Db/Statement.php(291): Varien_Db_Statement_Pdo_Mysql->_execute(Array)
+#3 /home/msoft/public_html/multi/lib/Zend/Db/Adapter/Abstract.php(480): Zend_Db_Statement->execute(Array)
+#4 /home/msoft/public_html/multi/lib/Zend/Db/Adapter/Pdo/Abstract.php(238): Zend_Db_Adapter_Abstract->query('SET NAMES utf8', Array)
+#5 /home/msoft/public_html/multi/lib/Varien/Db/Adapter/Pdo/Mysql.php(504): Zend_Db_Adapter_Pdo_Abstract->query('SET NAMES utf8', Array)
+#6 /home/msoft/public_html/multi/app/code/core/Mage/Core/Model/Resource.php(179): Varien_Db_Adapter_Pdo_Mysql->query('SE in /home/msoft/public_html/multi/lib/Zend/Db/Statement/Pdo.php on line 235
+[04-Sep-2015 12:30:42 UTC] PHP Fatal error:  Class 'Biztech_Trackorder_Helper_Data' not found in /home/msoft/public_html/multi/app/Mage.php on line 547
+[05-Sep-2015 15:25:55 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/msoft/public_html/multi/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 213
+[08-Sep-2015 11:28:18 UTC] PHP Fatal error:  Call to undefined method Cminds_Marketplace_Helper_Data::clearString() in /home/msoft/public_html/multi/app/code/community/Cminds/Marketplace/Model/Adminhtml/Observer.php on line 216
+[08-Sep-2015 11:36:42 UTC] PHP Fatal error:  Call to undefined method Cminds_Marketplace_Helper_Data::clearString() in /home/msoft/public_html/multi/app/code/community/Cminds/Marketplace/Model/Adminhtml/Observer.php on line 216
+[08-Sep-2015 11:58:41 UTC] PHP Fatal error:  Call to undefined method Cminds_Marketplace_Helper_Data::clearString() in /home/msoft/public_html/multi/app/code/community/Cminds/Marketplace/Model/Adminhtml/Observer.php on line 216
+[08-Sep-2015 12:17:48 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/multi/app/code/core/Mage/Core/Block/Abstract.php on line 815
+[08-Sep-2015 12:18:41 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/multi/app/code/core/Mage/Core/Block/Abstract.php on line 815
+[08-Sep-2015 12:19:36 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/multi/app/code/core/Mage/Core/Block/Abstract.php on line 815
+[08-Sep-2015 12:25:26 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/multi/app/code/core/Mage/Core/Block/Abstract.php on line 815
+[08-Sep-2015 12:40:11 UTC] PHP Fatal error:  Class 'Varien_Db_Select' not found in /home/msoft/public_html/multi/lib/Varien/Db/Adapter/Pdo/Mysql.php on line 1374
+[08-Sep-2015 12:40:11 UTC] PHP Fatal error:  Class 'Zend_Locale_Exception' not found in /home/msoft/public_html/multi/lib/Zend/Locale/Data.php on line 157
+[08-Sep-2015 12:40:12 UTC] PHP Fatal error:  Call to a member function getCollection() on a non-object in /home/msoft/public_html/multi/app/code/core/Mage/Core/Model/App.php on line 619
+[09-Sep-2015 12:16:34 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/mudita/app/code/core/Mage/Core/Block/Abstract.php on line 815
+[09-Sep-2015 12:16:50 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/mudita/app/code/core/Mage/Core/Block/Abstract.php on line 815
+[09-Sep-2015 12:18:28 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/mudita/app/code/core/Mage/Core/Block/Abstract.php on line 815
+[09-Sep-2015 12:27:43 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/mudita/app/code/core/Mage/Core/Block/Abstract.php on line 815
+[09-Sep-2015 12:28:19 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/mudita/includes/src/__default.php on line 2509
+[09-Sep-2015 12:28:54 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/mudita/app/code/core/Mage/Core/Block/Abstract.php on line 815
+[09-Sep-2015 12:29:06 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/mudita/app/code/core/Mage/Core/Block/Abstract.php on line 815
+[09-Sep-2015 12:29:11 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/mudita/app/code/core/Mage/Core/Block/Abstract.php on line 815
+[09-Sep-2015 12:30:43 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/mudita/app/code/core/Mage/Core/Block/Abstract.php on line 815
+[09-Sep-2015 16:13:34 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 193
+[09-Sep-2015 16:19:01 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 228
+[09-Sep-2015 16:19:33 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 229
+[09-Sep-2015 16:20:01 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 228
+[09-Sep-2015 16:24:06 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 228
+[09-Sep-2015 16:24:36 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 163
+[09-Sep-2015 16:28:03 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 163
+[09-Sep-2015 16:29:50 UTC] PHP Fatal error:  Call to a member function getSliderActivation() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 22
+[09-Sep-2015 16:30:30 UTC] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 68
+[09-Sep-2015 16:31:22 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 147
+[09-Sep-2015 16:32:23 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 71
+[09-Sep-2015 16:32:59 UTC] PHP Fatal error:  Call to a member function getSliderActivation() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 22
+[09-Sep-2015 16:33:46 UTC] PHP Fatal error:  Call to a member function getItemCountScroll() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 23
+[09-Sep-2015 16:34:35 UTC] PHP Fatal error:  Call to a member function getItemCountScroll() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 23
+[09-Sep-2015 16:35:25 UTC] PHP Fatal error:  Call to a member function getSliderActivation() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 22
+[09-Sep-2015 16:36:17 UTC] PHP Fatal error:  Call to a member function getSliderActivation() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 22
+[09-Sep-2015 16:37:32 UTC] PHP Fatal error:  Call to a member function getItemCountScroll() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 22
+[09-Sep-2015 16:38:23 UTC] PHP Fatal error:  Call to a member function getItemCountScroll() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 22
+[09-Sep-2015 16:40:06 UTC] PHP Fatal error:  Call to a member function getItemCountScroll() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 22
+[09-Sep-2015 16:53:33 UTC] PHP Fatal error:  Class 'Mage_ThemeOptions_Helper_Retina' not found in /home/msoft/public_html/mudita/app/Mage.php on line 547
+[11-Sep-2015 07:49:08 UTC] PHP Fatal error:  Call to a member function getSliderActivation() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 43
+[11-Sep-2015 07:50:13 UTC] PHP Fatal error:  Call to a member function getSliderActivation() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 22
+[11-Sep-2015 07:51:01 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 109
+[11-Sep-2015 07:51:29 UTC] PHP Fatal error:  Call to a member function getItemCountScroll() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 22
+[11-Sep-2015 07:54:03 UTC] PHP Fatal error:  Call to a member function getScrollSpeed() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 22
+[11-Sep-2015 07:55:29 UTC] PHP Fatal error:  Call to a member function getSliderAlignment() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 22
+[11-Sep-2015 07:56:57 UTC] PHP Fatal error:  Call to a member function getSliderCircular() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 22
+[11-Sep-2015 07:57:30 UTC] PHP Fatal error:  Call to a member function getAutoScrollTime() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 22
+[11-Sep-2015 10:22:49 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 181
+[11-Sep-2015 10:23:29 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 181
+[11-Sep-2015 10:24:35 UTC] PHP Fatal error:  Call to a member function getProductUrl() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 63
+[11-Sep-2015 11:13:56 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 92
+[11-Sep-2015 12:40:30 UTC] PHP Parse error:  syntax error, unexpected 'endfor' (T_ENDFOR) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 144
+[11-Sep-2015 12:41:23 UTC] PHP Parse error:  syntax error, unexpected 'endfor' (T_ENDFOR) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 145
+[11-Sep-2015 12:41:46 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 165
+[11-Sep-2015 12:42:42 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 165
+[11-Sep-2015 12:42:55 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 165
+[11-Sep-2015 12:43:26 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 165
+[11-Sep-2015 12:44:17 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 165
+[11-Sep-2015 16:35:49 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 29
+[12-Sep-2015 19:41:52 UTC] PHP Fatal error:  Call to a member function addToChildGroup() on a non-object in /home/msoft/public_html/mudita/app/code/core/Mage/Core/Block/Abstract.php on line 815
+[14-Sep-2015 17:45:46 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/vendor.phtml on line 2
+[15-Sep-2015 15:34:31 UTC] PHP Fatal error:  Call to a member function getSupplierName() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/marketplace/supplier.phtml on line 10
+[16-Sep-2015 18:45:31 UTC] PHP Fatal error:  Call to a member function getSupplierName() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/marketplace/supplier.phtml on line 10
+[17-Sep-2015 12:39:05 UTC] PHP Fatal error:  Call to a member function getDefaultStoreId() on a non-object in /home/msoft/public_html/mudita/app/code/community/Cminds/Core/Model/Core.php on line 164
+[17-Sep-2015 12:43:53 UTC] PHP Fatal error:  Call to a member function getDefaultStoreId() on a non-object in /home/msoft/public_html/mudita/app/code/community/Cminds/Core/Model/Core.php on line 164
+[18-Sep-2015 14:40:19 UTC] PHP Fatal error:  Call to a member function setTemplate() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/page/html/footer.phtml on line 14
+[18-Sep-2015 16:06:12 UTC] PHP Fatal error:  Call to a member function addFieldToSelect() on a non-object in /home/msoft/public_html/mudita/app/code/local/Velanapps/Ecfplus/controllers/Adminhtml/MultiformController.php on line 254
+[18-Sep-2015 16:06:24 UTC] PHP Fatal error:  Call to a member function addFieldToSelect() on a non-object in /home/msoft/public_html/mudita/app/code/local/Velanapps/Ecfplus/controllers/Adminhtml/MultiformController.php on line 254
+[18-Sep-2015 16:06:48 UTC] PHP Fatal error:  Call to a member function addFieldToSelect() on a non-object in /home/msoft/public_html/mudita/app/code/local/Velanapps/Ecfplus/controllers/Adminhtml/MultiformController.php on line 254
+[18-Sep-2015 16:18:39 UTC] PHP Fatal error:  Call to a member function setTemplate() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/page/html/footer.phtml on line 14
+[18-Sep-2015 16:19:00 UTC] PHP Fatal error:  Call to a member function setTemplate() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/page/html/footer.phtml on line 14
+[18-Sep-2015 16:37:47 UTC] PHP Fatal error:  Call to a member function setTemplate() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/page/html/footer.phtml on line 14
+[18-Sep-2015 16:44:14 UTC] PHP Fatal error:  Call to a member function addFieldToSelect() on a non-object in /home/msoft/public_html/mudita/app/code/local/Velanapps/Ecfplus/controllers/Adminhtml/MultiformController.php on line 254
+[18-Sep-2015 16:46:10 UTC] PHP Fatal error:  Call to a member function addFieldToSelect() on a non-object in /home/msoft/public_html/mudita/app/code/local/Velanapps/Ecfplus/controllers/Adminhtml/MultiformController.php on line 254
+[18-Sep-2015 16:51:26 UTC] PHP Fatal error:  Call to a member function addFieldToSelect() on a non-object in /home/msoft/public_html/mudita/app/code/local/Velanapps/Ecfplus/controllers/Adminhtml/MultiformController.php on line 254
+[18-Sep-2015 16:59:19 UTC] PHP Fatal error:  Call to a member function addFieldToSelect() on a non-object in /home/msoft/public_html/mudita/app/code/local/Velanapps/Ecfplus/controllers/Adminhtml/MultiformController.php on line 254
+[18-Sep-2015 16:59:30 UTC] PHP Fatal error:  Call to a member function addFieldToSelect() on a non-object in /home/msoft/public_html/mudita/app/code/local/Velanapps/Ecfplus/controllers/Adminhtml/MultiformController.php on line 254
+[18-Sep-2015 17:00:42 UTC] PHP Fatal error:  Call to a member function addFieldToSelect() on a non-object in /home/msoft/public_html/mudita/app/code/local/Velanapps/Ecfplus/controllers/Adminhtml/MultiformController.php on line 254
+[18-Sep-2015 17:05:45 UTC] PHP Fatal error:  Call to a member function addFieldToSelect() on a non-object in /home/msoft/public_html/mudita/app/code/local/Velanapps/Ecfplus/controllers/Adminhtml/MultiformController.php on line 254
+[18-Sep-2015 17:07:09 UTC] PHP Fatal error:  Call to a member function addFieldToSelect() on a non-object in /home/msoft/public_html/mudita/app/code/local/Velanapps/Ecfplus/Model/Truncateitem.php on line 15
+[18-Sep-2015 17:21:18 UTC] PHP Fatal error:  Call to a member function addFieldToSelect() on a non-object in /home/msoft/public_html/mudita/app/code/local/Velanapps/Ecfplus/controllers/Adminhtml/MultiformController.php on line 254
+[18-Sep-2015 17:21:24 UTC] PHP Fatal error:  Call to a member function addFieldToSelect() on a non-object in /home/msoft/public_html/mudita/app/code/local/Velanapps/Ecfplus/controllers/Adminhtml/MultiformController.php on line 254
+[19-Sep-2015 11:20:18 UTC] PHP Fatal error:  Call to a member function getItems() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/review/product_info_review.phtml on line 28
+[19-Sep-2015 12:11:56 UTC] PHP Fatal error:  Call to a member function getCreatorId() on a non-object in /home/msoft/public_html/mudita/app/code/community/Cminds/Marketplace/Helper/Data.php on line 163
+[19-Sep-2015 12:13:21 UTC] PHP Fatal error:  Call to a member function getCreatorId() on a non-object in /home/msoft/public_html/mudita/app/code/community/Cminds/Marketplace/Helper/Data.php on line 163
+[19-Sep-2015 12:19:37 UTC] PHP Fatal error:  Call to a member function getCreatorId() on a non-object in /home/msoft/public_html/mudita/app/code/community/Cminds/Marketplace/Helper/Data.php on line 163
+[19-Sep-2015 12:28:56 UTC] PHP Fatal error:  Call to a member function addFieldToSelect() on a non-object in /home/msoft/public_html/mudita/app/code/local/Velanapps/Ecfplus/controllers/Adminhtml/MultiformController.php on line 254
+[19-Sep-2015 12:30:28 UTC] PHP Fatal error:  Call to a member function addFieldToSelect() on a non-object in /home/msoft/public_html/mudita/app/code/local/Velanapps/Ecfplus/controllers/Adminhtml/MultiformController.php on line 254
+[19-Sep-2015 19:49:14 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/reports/product_viewed.phtml on line 101
+[19-Sep-2015 19:51:23 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/reports/product_viewed.phtml on line 107
+[19-Sep-2015 19:52:15 UTC] PHP Fatal error:  Call to a member function count() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/reports/product_viewed.phtml on line 33
+[19-Sep-2015 19:56:07 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/reports/product_viewed.phtml on line 112
+[19-Sep-2015 19:56:37 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/reports/product_viewed.phtml on line 111
+[19-Sep-2015 19:57:31 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/reports/product_viewed.phtml on line 111
+[19-Sep-2015 20:12:31 UTC] PHP Fatal error:  Call to a member function count() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/reports/product_viewed.phtml on line 34
+[19-Sep-2015 20:13:47 UTC] PHP Fatal error:  Call to a member function count() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/reports/product_viewed.phtml on line 33
+[19-Sep-2015 20:15:45 UTC] PHP Fatal error:  Call to a member function count() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/reports/product_viewed.phtml on line 33
+[19-Sep-2015 20:18:43 UTC] PHP Fatal error:  Call to a member function count() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/reports/product_viewed.phtml on line 33
+[19-Sep-2015 20:26:44 UTC] PHP Fatal error:  Call to a member function getProductUrl() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/reports/product_viewed.phtml on line 26
+[19-Sep-2015 20:28:25 UTC] PHP Fatal error:  Call to a member function getProductUrl() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/reports/product_viewed.phtml on line 26
+[19-Sep-2015 20:29:06 UTC] PHP Fatal error:  Call to a member function getProductUrl() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/reports/product_viewed.phtml on line 26
+[19-Sep-2015 20:31:30 UTC] PHP Fatal error:  Call to a member function getRatingSummary() on a non-object in /home/msoft/public_html/mudita/includes/src/Mage_Review_Block_Helper.php on line 51
+[19-Sep-2015 20:32:20 UTC] PHP Fatal error:  Call to a member function getRatingSummary() on a non-object in /home/msoft/public_html/mudita/includes/src/Mage_Review_Block_Helper.php on line 51
+[19-Sep-2015 20:34:56 UTC] PHP Fatal error:  Call to a member function getProductUrl() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/reports/product_viewed.phtml on line 24
+[19-Sep-2015 20:35:18 UTC] PHP Fatal error:  Call to a member function getProductUrl() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/reports/product_viewed.phtml on line 24
+[19-Sep-2015 21:15:53 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 154
+[20-Sep-2015 12:34:03 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 141
+[20-Sep-2015 19:25:10 UTC] PHP Parse error:  syntax error, unexpected ''' (T_ENCAPSED_AND_WHITESPACE), expecting ')' in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 38
+[21-Sep-2015 07:31:47 UTC] PHP Fatal error:  Call to a member function addAttributeToSelect() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 5
+[21-Sep-2015 07:33:03 UTC] PHP Fatal error:  Call to a member function count() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 15
+[21-Sep-2015 07:39:42 UTC] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 180
+[21-Sep-2015 07:40:14 UTC] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 180
+[21-Sep-2015 07:40:35 UTC] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 180
+[21-Sep-2015 07:44:12 UTC] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 179
+[21-Sep-2015 07:44:34 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 108
+[21-Sep-2015 07:47:18 UTC] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 181
+[21-Sep-2015 07:54:09 UTC] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/catalog/product/list/upsell.phtml on line 165
+[21-Sep-2015 11:40:52 UTC] PHP Fatal error:  Call to a member function getId() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/page/html/breadcrumbs.phtml on line 9
+[21-Sep-2015 11:41:07 UTC] PHP Fatal error:  Call to a member function getId() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/page/html/breadcrumbs.phtml on line 9
+[21-Sep-2015 23:21:38 UTC] PHP Fatal error:  Call to a member function setTemplate() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/page/html/footer.phtml on line 13
+[21-Sep-2015 23:22:01 UTC] PHP Fatal error:  Call to a member function setTemplate() on a non-object in /home/msoft/public_html/mudita/app/design/frontend/smartwave/porto/template/page/html/footer.phtml on line 13
+[24-Sep-2015 06:57:56 UTC] DEBUG - HTTP request details
+[24-Sep-2015 06:57:56 UTC] DEBUG OBJECT - Array
+(
+    [method] => POST
+    [url] => https://api.login.yahoo.com/oauth/v2/get_request_token
+    [code] => 401
+    [requestHeaders] => Array
+        (
+            [0] => Accept: application/json
+            [1] => Content-Type: application/x-www-form-urlencoded
+        )
+
+    [requestBody] => oauth_callback=http%3A%2F%2F109.199.125.161%2F~msoft%2Fmudita%2Findex.php%2Fsociallogin%2Fyalogin%2Flogin%2F%3Fin_popup&oauth_consumer_key=&oauth_nonce=a58b1ac0c42b5d3bf5329732a18ee925&oauth_signature=o4sag1pG6%2FaZsCQyFnzMpwwJcLY%3D&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1443077875&oauth_version=1.0
+    [responseHeaders] => Array
+        (
+            [Date] => Thu, 24 Sep 2015 06:57:56 GMT
+            [P3P] => policyref="http://info.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC GOV"
+            [WWW-Authenticate] => OAuth oauth_problem=parameter_absent&oauth_parameters_absent=oauth_consumer_key
+            [Cache-Control] => private
+            [Content-Length] => 73
+            [Content-Type] => application/x-www-form-urlencoded
+            [Age] => 1
+            [Connection] => close
+            [Strict-Transport-Security] => max-age=15552000
+            [Server] => ATS
+        )
+
+    [responseBody] => oauth_problem=parameter_absent&oauth_parameters_absent=oauth_consumer_key
+)
+
+[24-Sep-2015 06:57:56 UTC] ERROR - Failed to create request token: parameter_absent
+[24-Sep-2015 06:57:56 UTC] ERROR - Failed to create request token
+[24-Sep-2015 07:10:50 UTC] DEBUG - HTTP request details
+[24-Sep-2015 07:10:50 UTC] DEBUG OBJECT - Array
+(
+    [method] => POST
+    [url] => https://api.login.yahoo.com/oauth/v2/get_request_token
+    [code] => 401
+    [requestHeaders] => Array
+        (
+            [0] => Accept: application/json
+            [1] => Content-Type: application/x-www-form-urlencoded
+        )
+
+    [requestBody] => oauth_callback=http%3A%2F%2F109.199.125.161%2F~msoft%2Fmudita%2Findex.php%2Fsociallogin%2Fyalogin%2Flogin%2F%3Fin_popup&oauth_consumer_key=&oauth_nonce=1af0a6eb9ab0f8093e53fc97c6167c0d&oauth_signature=eAqxxoTHVyHDeZKcZBKqIedjDpg%3D&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1443078649&oauth_version=1.0
+    [responseHeaders] => Array
+        (
+            [Date] => Thu, 24 Sep 2015 07:10:50 GMT
+            [P3P] => policyref="http://info.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC GOV"
+            [WWW-Authenticate] => OAuth oauth_problem=parameter_absent&oauth_parameters_absent=oauth_consumer_key
+            [Cache-Control] => private
+            [Content-Length] => 73
+            [Content-Type] => application/x-www-form-urlencoded
+            [Age] => 0
+            [Connection] => close
+            [Strict-Transport-Security] => max-age=15552000
+            [Server] => ATS
+        )
+
+    [responseBody] => oauth_problem=parameter_absent&oauth_parameters_absent=oauth_consumer_key
+)
+
+[24-Sep-2015 07:10:50 UTC] ERROR - Failed to create request token: parameter_absent
+[24-Sep-2015 07:10:50 UTC] ERROR - Failed to create request token
+[30-Oct-2015 12:34:03 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000]: General error: 2006 MySQL server has gone away' in /home/msoft/public_html/mudita/lib/Zend/Db/Statement/Pdo.php:228
+Stack trace:
+#0 /home/msoft/public_html/mudita/lib/Zend/Db/Statement/Pdo.php(228): PDOStatement->execute(Array)
+#1 /home/msoft/public_html/mudita/lib/Varien/Db/Statement/Pdo/Mysql.php(110): Zend_Db_Statement_Pdo->_execute(Array)
+#2 /home/msoft/public_html/mudita/app/code/core/Zend/Db/Statement.php(291): Varien_Db_Statement_Pdo_Mysql->_execute(Array)
+#3 /home/msoft/public_html/mudita/lib/Zend/Db/Adapter/Abstract.php(480): Zend_Db_Statement->execute(Array)
+#4 /home/msoft/public_html/mudita/lib/Zend/Db/Adapter/Pdo/Abstract.php(238): Zend_Db_Adapter_Abstract->query('SELECT `core_se...', Array)
+#5 /home/msoft/public_html/mudita/lib/Varien/Db/Adapter/Pdo/Mysql.php(504): Zend_Db_Adapter_Pdo_Abstract->query('SELECT `core_se...', Array)
+#6 /home/msoft/public_html/mudita/lib/Zend/Db/Adapter/Abstract.php(828): Varien_Db_Adapter_Pdo_Mysql->que in /home/msoft/public_html/mudita/lib/Zend/Db/Statement/Pdo.php on line 235
+[30-Oct-2015 12:34:03 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000]: General error: 2006 MySQL server has gone away' in /home/msoft/public_html/mudita/lib/Zend/Db/Statement/Pdo.php:228
+Stack trace:
+#0 /home/msoft/public_html/mudita/lib/Zend/Db/Statement/Pdo.php(228): PDOStatement->execute(Array)
+#1 /home/msoft/public_html/mudita/lib/Varien/Db/Statement/Pdo/Mysql.php(110): Zend_Db_Statement_Pdo->_execute(Array)
+#2 /home/msoft/public_html/mudita/app/code/core/Zend/Db/Statement.php(291): Varien_Db_Statement_Pdo_Mysql->_execute(Array)
+#3 /home/msoft/public_html/mudita/lib/Zend/Db/Adapter/Abstract.php(480): Zend_Db_Statement->execute(Array)
+#4 /home/msoft/public_html/mudita/lib/Zend/Db/Adapter/Pdo/Abstract.php(238): Zend_Db_Adapter_Abstract->query('SELECT `core_se...', Array)
+#5 /home/msoft/public_html/mudita/lib/Varien/Db/Adapter/Pdo/Mysql.php(504): Zend_Db_Adapter_Pdo_Abstract->query('SELECT `core_se...', Array)
+#6 /home/msoft/public_html/mudita/lib/Zend/Db/Adapter/Abstract.php(828): Varien_Db_Adapter_Pdo_Mysql->que in /home/msoft/public_html/mudita/lib/Zend/Db/Statement/Pdo.php on line 235

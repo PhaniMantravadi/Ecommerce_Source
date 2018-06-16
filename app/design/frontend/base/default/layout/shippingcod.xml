@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<layout>
+	<shippingcod_index_index>
+		<reference name='content'>
+		<block type="core/template" name="root" output="toHtml" template="shippingcod/ajax.phtml" />
+		</reference>
+	</shippingcod_index_index>
+	
+	<catalog_product_view>
+        <reference name="product.info">
+			<block type="core/template" name="shippingcod_postcodecheck" template="shippingcod/postcodecheck.phtml" after="product.info.addtocart"/>
+        </reference>
+	</catalog_product_view>
+	<default>
+    <reference name="head">
+        <block type="core/text" name="google.cdn.jquery">
+            <action method="setText">
+                <text><![CDATA[<script>window.jQuery||document.write('<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">\x3c/script>');</script><script>jQuery.noConflict();</script>]]></text>
+            </action>
+        </block>
+    </reference>
+</default>
+</layout>

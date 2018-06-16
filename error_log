@@ -1,0 +1,54 @@
+[26-Sep-2015 16:37:21 UTC] DEBUG - HTTP request details
+[26-Sep-2015 16:37:21 UTC] DEBUG OBJECT - Array
+(
+    [method] => POST
+    [url] => https://api.login.yahoo.com/oauth/v2/get_request_token
+    [code] => 401
+    [requestHeaders] => Array
+        (
+            [0] => Accept: application/json
+            [1] => Content-Type: application/x-www-form-urlencoded
+        )
+
+    [requestBody] => oauth_callback=http%3A%2F%2F166.62.28.84%2F~meghainc%2Fmudita%2Findex.php%2Fsociallogin%2Fyalogin%2Flogin%2F%3Fin_popup&oauth_consumer_key=&oauth_nonce=3cd15c5f8cea9d65b83416720fb64f15&oauth_signature=tTKNhu02pbbfgmM1Ri05mR%2BkqXg%3D&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1443285441&oauth_version=1.0
+    [responseHeaders] => Array
+        (
+            [Date] => Sat, 26 Sep 2015 16:37:21 GMT
+            [Server] => ATS
+            [Yahoo-App-Auth-Error-Cert] => v=1;a=yahoo.membership.ats.yca.prod;h=106.10.165.35;t=1445822949;s=rVHjtacl.TALVM3ip_13NV0M9dkH2zPKtSMyFnJ4DkKFw4Q.gRY38Hg9RgUT2GHNUexoB11KIRCXp_pfG9Yr5w--
+            [Content-Length] => 0
+            [Age] => 0
+            [Connection] => close
+            [Strict-Transport-Security] => max-age=15552000
+        )
+
+    [responseBody] => 
+)
+
+[26-Sep-2015 16:37:21 UTC] ERROR - Failed to create request token: unknown problem
+[26-Sep-2015 16:37:21 UTC] ERROR - Failed to create request token
+[28-Sep-2015 16:20:34 UTC] PHP Fatal error:  Allowed memory size of 67108864 bytes exhausted (tried to allocate 130968 bytes) in /home/meghainc/public_html/mudita/includes/src/__checkout.php on line 54694
+[04-Dec-2015 07:54:01 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 1498 bytes) in /home/cultures/public_html/beta/includes/src/__default.php on line 61613
+[04-Dec-2015 07:54:02 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 262144 bytes) in /home/cultures/public_html/beta/includes/src/__default.php on line 25066
+[04-Dec-2015 07:54:28 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 130968 bytes) in /home/cultures/public_html/beta/includes/src/Zend_Locale.php on line 289
+[04-Dec-2015 07:54:29 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 8367 bytes) in /home/cultures/public_html/beta/includes/src/Zend_Cache_Backend_File.php on line 993
+[04-Dec-2015 07:54:33 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 130968 bytes) in /home/cultures/public_html/beta/includes/src/Zend_Locale.php on line 289
+[04-Dec-2015 07:54:34 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 8367 bytes) in /home/cultures/public_html/beta/includes/src/Zend_Cache_Backend_File.php on line 993
+[04-Dec-2015 07:55:18 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 84 bytes) in /home/cultures/public_html/beta/lib/Zend/Db/Statement/Pdo.php on line 291
+[04-Dec-2015 07:55:20 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 130968 bytes) in /home/cultures/public_html/beta/lib/Zend/Locale.php on line 289
+[04-Dec-2015 07:55:39 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 84 bytes) in /home/cultures/public_html/beta/lib/Zend/Db/Statement/Pdo.php on line 291
+[04-Dec-2015 07:55:41 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 82 bytes) in /home/cultures/public_html/beta/lib/Zend/Db/Statement/Pdo.php on line 291
+[04-Dec-2015 07:55:58 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 1001 bytes) in /home/cultures/public_html/beta/app/code/core/Zend/Db/Statement.php on line 194
+[04-Dec-2015 07:56:00 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 78 bytes) in /home/cultures/public_html/beta/lib/Zend/Db/Statement/Pdo.php on line 291
+[04-Dec-2015 07:56:02 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 1687 bytes) in /home/cultures/public_html/beta/lib/Varien/Db/Adapter/Pdo/Mysql.php on line 524
+[04-Dec-2015 07:56:03 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 130968 bytes) in /home/cultures/public_html/beta/app/code/core/Zend/Date.php on line 1091
+[04-Dec-2015 07:57:36 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 1325874 bytes) in /home/cultures/public_html/beta/app/code/core/Mage/Compiler/Model/Process.php on line 379
+[04-Jan-2016 23:00:01 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] No such file or directory' in /home/cultures/public_html/lib/Zend/Db/Adapter/Pdo/Abstract.php:129
+Stack trace:
+#0 /home/cultures/public_html/lib/Zend/Db/Adapter/Pdo/Abstract.php(129): PDO->__construct('mysql:host=loca...', 'cultures_eid', 'Md@14#hu8&pH*', Array)
+#1 /home/cultures/public_html/lib/Zend/Db/Adapter/Pdo/Mysql.php(111): Zend_Db_Adapter_Pdo_Abstract->_connect()
+#2 /home/cultures/public_html/lib/Varien/Db/Adapter/Pdo/Mysql.php(396): Zend_Db_Adapter_Pdo_Mysql->_connect()
+#3 /home/cultures/public_html/lib/Zend/Db/Adapter/Abstract.php(460): Varien_Db_Adapter_Pdo_Mysql->_connect()
+#4 /home/cultures/public_html/lib/Zend/Db/Adapter/Pdo/Abstract.php(238): Zend_Db_Adapter_Abstract->query('SET NAMES utf8', Array)
+#5 /home/cultures/public_html/lib/Varien/Db/Adapter/Pdo/Mysql.php(504): Zend_Db_Adapter_Pdo_Abstract->query('SET NAMES utf8', Array)
+#6 /home/cultures/public_html/app/code/core/Mage/Core/Model/Resource.php(179): Varien_Db_Adapter_ in /home/cultures/public_html/lib/Zend/Db/Adapter/Pdo/Abstract.php on line 144

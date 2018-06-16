@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Magik_Backorder>
+      <active>true</active>
+      <codePool>community</codePool>
+    </Magik_Backorder>
+  </modules>
+</config>

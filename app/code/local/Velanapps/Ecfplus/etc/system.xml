@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <myconf_ecfplus translate="label" module="ecfplus">
+            <label>EIDForms</label>
+            <sort_order>100</sort_order>
+        </myconf_ecfplus>
+    </tabs>	
+    <sections>
+        <ecfplus_tab translate="label" module="ecfplus">
+            <label>ContactForm</label>
+            <tab>iwdall</tab>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+				<!-- Easy Contact Form Plus Setting-->
+                 <ecfplus_setting translate="label comment">
+                    <label>Contact Form Setting</label>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+                    <fields>
+						<ecfplus_popup_active translate="label comment">
+                            <label>ContactForm Popup</label>
+							<frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<comment>Enabling this will show the EasyContactFormPlus Popup in front-end.</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</ecfplus_popup_active>
+						<ecfplus_popup_position translate="label comment">
+                            <label>Position</label>
+							<frontend_type>select</frontend_type>
+                            <source_model>ecfplus/dropdowns_position</source_model>
+							<comment>ContactForm Position</comment>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ecfplus_popup_position>	
+						<ecfplus_form_list translate="label comment">
+                            <label>Choose Form to display as popup</label>
+							<frontend_type>select</frontend_type>
+							<source_model>ecfplus/dropdowns_formlist</source_model>
+							<validate>required-entry validate-select</validate>
+							<comment>ContactForm form to set as popup</comment>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ecfplus_form_list>						
+						<ecfplus_title_color>
+                            <label>TitlePallet</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>ecfplus/adminhtml_system_config_form_field_colorpicker</frontend_model>							
+							<validate>required-entry</validate>
+							<comment>Selected image will be displayed for frontend</comment>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<!-- <depends><ecfplus_choose>1</ecfplus_choose></depends> -->
+                        </ecfplus_title_color>
+						 <ecfplus_content_color>
+                            <label>Content Pallet</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>ecfplus/adminhtml_system_config_form_field_colorpicker</frontend_model>
+							<validate>required-entry</validate>
+							<comment>Selected image will be displayed for frontend</comment>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<!-- <depends><ecfplus_choose>1</ecfplus_choose></depends> -->
+                        </ecfplus_content_color>
+						<ecfplus_submit_color>
+                            <label>Submit Button Pallet</label>
+							<frontend_type>text</frontend_type>							
+							<frontend_model>ecfplus/adminhtml_system_config_form_field_colorpicker</frontend_model>
+							<validate>required-entry</validate>
+							<comment>Selected image will be displayed for frontend</comment>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<!-- <depends><ecfplus_choose>1</ecfplus_choose></depends> -->
+                        </ecfplus_submit_color>
+						<ecfplus_contact_info>
+                            <label>Contact Information In Center Left Panel</label>
+							<frontend_type>select</frontend_type>										
+							<source_model>adminhtml/system_config_source_yesno</source_model> 
+							<validate>required-entry</validate>							
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>ecfplus_popup_position
+							<depends>
+								<ecfplus_popup_position>CL</ecfplus_popup_position>								
+							</depends>
+                        </ecfplus_contact_info>
+						<ecfplus_contact_content translate="label">
+							<label>Field label </label>
+							<frontend_type>editor</frontend_type>
+							<frontend_model>ecfplus/adminhtml_system_config_editor</frontend_model>
+							<validate>required-entry</validate>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends>
+								<ecfplus_contact_info>1</ecfplus_contact_info>
+								<ecfplus_popup_position>CL</ecfplus_popup_position>
+							</depends>
+						</ecfplus_contact_content>
+						<ecfplus_js_config translate="label comment">
+								<label>Enable jQuery</label>
+								<frontend_type>select</frontend_type>
+															
+								<source_model>adminhtml/system_config_source_yesno</source_model> 
+								<comment>jQuery Enable/Disable</comment>
+								<validate>required-entry </validate>
+								<sort_order>11</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+						</ecfplus_js_config>
+					</fields>
+                </ecfplus_setting> 
+				<!-- <ecfplus_captcha translate="label comment">
+                    <label>Captcha Settings</label>
+                    <sort_order>101</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>						
+						<easycontact_privatekey translate="label comment">
+                            <label>Secret Key</label>
+							<frontend_type>text</frontend_type>                            
+							<comment>Please enter the secret key value</comment>
+							<validate>required-entry</validate>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</easycontact_privatekey>
+						<easycontact_publickey translate="label comment">
+                            <label>Site Key</label>
+							<frontend_type>text</frontend_type>                            
+							<comment>Please enter the site key value</comment>
+							<validate>required-entry</validate>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</easycontact_publickey>
+					</fields>
+                </ecfplus_captcha>	 -->	
+            </groups>
+        </ecfplus_tab>
+		
+		<!--<ecfplus_activation translate="label" module="ecfplus">
+            <label>EasyContactFormPlus Activation</label>
+            <tab>myconf_ecfplus</tab>
+            <sort_order>101</sort_order>
+            <show_in_default>1111</show_in_default>
+            <show_in_website>1111</show_in_website>
+            <show_in_store>1111</show_in_store>
+            <groups>-->
+				<!-- Activation Setting Tab for Easy Contact Form -->
+                <!--<ecfplus_active_group translate="label comment">
+                    <label>Activation Setting</label>
+                    <sort_order>100</sort_order>
+                    <show_in_default>0</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>	
+						<ecfplus_activation_key translate="label">
+                            <label>Activation Key</label>
+                            <frontend_type>text</frontend_type>							
+                            <sort_order>2</sort_order>                            
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ecfplus_activation_key>
+                    </fields>
+                </ecfplus_active_group>
+            </groups>
+        </ecfplus_activation>-->		
+    </sections>
+</config>

@@ -1,0 +1,320 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+    <customer_account>
+        <block type="sz_rma/link" name="sz_rma_link_dashboard">
+            <action method="addDashboardLink" translate="label" module="sz_rma"><block>customer_account_navigation</block><name>return</name><path>sz_rma/return/history/</path><label>My Returns</label></action>
+        </block>
+    </customer_account>
+
+    <sz_rma_return_history translate="label">
+        <label>Customer My Returns History</label>
+        <update handle="customer_account"/>
+        <reference name="customer_account_navigation">
+            <action method="setActive"><path>sz_rma/return/history/</path></action>
+        </reference>
+        <reference name="my.account.wrapper">
+            <block type="sz_rma/return_history" name="rma.return.history">
+                <block type="core/text_list" name="rma.return.history.info" as="info" translate="label">
+                    <label>Returns History Info</label>
+                </block>
+            </block>
+            <block type="sz_rma/return_history" name="customer.account.link.back" template="customer/account/link/back.phtml"/>
+        </reference>
+    </sz_rma_return_history>
+
+    <sz_rma_return_create translate="label">
+        <label>Customer My Return Create</label>
+        <update handle="customer_account"/>
+        <reference name="customer_account_navigation">
+            <action method="setActive"><path>sz_rma/return/history/</path></action>
+        </reference>
+        <reference name="my.account.wrapper">
+            <block type="sz_rma/return_create" as="create" name="rma.return.create" template="sz_rma/return/create.phtml">
+                <action method="setFormCode"><code>default</code></action>
+                <action method="setEntityModelClass"><code>sz_rma/item</code></action>
+            </block>
+        </reference>
+        <update handle="sz_rma_return_create_handle"/>
+    </sz_rma_return_create>
+
+    <sz_rma_return_create_handle>
+        <reference name="content">
+            <block name="sz_rma_item_form_template" type="sz_eav/form_template">
+                <action method="addRenderer">
+                    <type>text</type>
+                    <renderer_block>sz_eav/form_renderer_text</renderer_block>
+                    <template>sz_rma/form/renderer/text.phtml</template>
+                </action>
+                <action method="addRenderer">
+                    <type>textarea</type>
+                    <renderer_block>sz_eav/form_renderer_textarea</renderer_block>
+                    <template>sz_rma/form/renderer/textarea.phtml</template>
+                </action>
+                <action method="addRenderer">
+                    <type>select</type>
+                    <renderer_block>sz_rma/form_renderer_select</renderer_block>
+                    <template>sz_rma/form/renderer/select.phtml</template>
+                </action>
+                <action method="addRenderer">
+                    <type>image</type>
+                    <renderer_block>sz_rma/form_renderer_image</renderer_block>
+                    <template>sz_rma/form/renderer/image.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </sz_rma_return_create_handle>
+
+    <sz_rma_return_view translate="label">
+        <label>Customer My Account Return View</label>
+        <reference name="customer_account_navigation">
+            <action method="setActive"><path>sz_rma/return/history/</path></action>
+        </reference>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="sz_rma/return_view" name="rma.return.history">
+                <block type="core/text_list" name="rma.return.history.info" as="info" translate="label">
+                    <label>Customer My Account Return View</label>
+                </block>
+            </block>
+            <block type="sz_rma/return_view" name="customer.account.link.back" template="customer/account/link/back.phtml"/>
+        </reference>
+        <update handle="sz_rma_return_view_handle"/>
+        <block type="sz_rma/return_tracking" name="rma.return.tracking" as="tracking" />
+    </sz_rma_return_view>
+
+    <sz_rma_return_view_handle>
+        <reference name="content">
+            <block name="sz_rma_item_form_template" type="sz_eav/form_template">
+                <action method="addRenderer">
+                    <type>image</type>
+                    <renderer_block>sz_rma/form_renderer_image</renderer_block>
+                    <template>sz_rma/form/view/image.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </sz_rma_return_view_handle>
+
+    <sz_rma_return_returns translate="label">
+        <label>Customer My Account Order Returns View</label>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="sales/order_info" as="info" name="sales.order.info">
+                <block type="sales/order_info_buttons" as="buttons" name="sales.order.info.buttons">
+                    <block type="sz_rma/order_button" name="sz.rma.info.button" template="sz_rma/order/button.phtml" />
+                </block>
+            </block>
+            <block type="sz_rma/return_returns" name="rma.return.returns" />
+        </reference>
+        <reference name="sales.order.info">
+            <action method="addLink" translate="label" module="sales"><name>view</name><path>sales/order/view</path><label>Order Information</label></action>
+            <action method="addLink" translate="label" module="sales"><name>invoice</name><path>sales/order/invoice</path><label>Invoices</label></action>
+            <action method="addLink" translate="label" module="sales"><name>shipment</name><path>sales/order/shipment</path><label>Shipments</label></action>
+            <action method="addLink" translate="label" module="sales"><name>creditmemo</name><path>sales/order/creditmemo</path><label>Refunds</label></action>
+            <action method="addLink" translate="label" module="sales"><name>returns</name><path></path><label>Returns</label></action>
+        </reference>
+    </sz_rma_return_returns>
+
+    <sz_rma_guest_returns translate="label">
+        <label>Guest Order Returns View</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="sz_rma/return_info" as="info" name="sales.order.info">
+                <block type="sales/order_info_buttons" as="buttons" name="sales.order.info.buttons">
+                    <block type="sz_rma/order_button" name="sz.rma.info.button" template="sz_rma/order/button.phtml" />
+                </block>
+            </block>
+            <block type="sz_rma/return_returns" name="rma.return.returns" />
+        </reference>
+        <reference name="sales.order.info">
+            <action method="addLink" translate="label" module="sales"><name>view</name><path>sales/guest/view</path><label>Order Information</label></action>
+            <action method="addLink" translate="label" module="sales"><name>invoice</name><path>sales/guest/invoice</path><label>Invoices</label></action>
+            <action method="addLink" translate="label" module="sales"><name>shipment</name><path>sales/guest/shipment</path><label>Shipments</label></action>
+            <action method="addLink" translate="label" module="sales"><name>creditmemo</name><path>sales/guest/creditmemo</path><label>Refunds</label></action>
+            <action method="addLink" translate="label" module="sales"><name>returns</name><path></path><label>Returns</label></action>
+        </reference>
+    </sz_rma_guest_returns>
+
+    <sz_rma_guest_view translate="label">
+        <label>Guest Order View Return</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <!--reference name="customer_account_navigation">
+            <action method="setActive"><path>sz_rma/return/history/</path></action>
+        </reference-->
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="sz_rma/return_info" as="info" name="sales.order.info">
+                <block type="sales/order_info_buttons" as="buttons" name="sales.order.info.buttons">
+                    <block type="sz_rma/order_button" name="sz.rma.info.button" template="sz_rma/order/button.phtml" />
+                </block>
+            </block>
+            <block type="sz_rma/return_view" name="rma.return.history">
+                <block type="core/text_list" name="rma.return.history.info" as="info" translate="label">
+                    <label>View Return</label>
+                </block>
+            </block>
+            <block type="sz_rma/return_view" name="customer.account.link.back" template="customer/account/link/back.phtml"/>
+        </reference>
+        <update handle="sz_rma_return_view_handle"/>
+        <reference name="sales.order.info">
+            <action method="addLink" translate="label" module="sales"><name>view</name><path>sales/guest/view</path><label>Order Information</label></action>
+            <action method="addLink" translate="label" module="sales"><name>invoice</name><path>sales/guest/invoice</path><label>Invoices</label></action>
+            <action method="addLink" translate="label" module="sales"><name>shipment</name><path>sales/guest/shipment</path><label>Shipments</label></action>
+            <action method="addLink" translate="label" module="sales"><name>creditmemo</name><path>sales/guest/creditmemo</path><label>Refunds</label></action>
+            <action method="addLink" translate="label" module="sales"><name>returns</name><path></path><label>Returns</label></action>
+        </reference>
+        <block type="sz_rma/return_tracking" name="rma.return.tracking" as="tracking" />
+    </sz_rma_guest_view>
+
+    <sz_rma_guest_create translate="label">
+        <label>Guest Order Create Return</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="sz_rma/return_info" as="info" name="sales.order.info" />
+            <block type="sz_rma/return_create" as="create" name="rma.return.create" template="sz_rma/return/create.phtml">
+                <action method="setFormCode"><code>default</code></action>
+                <action method="setEntityModelClass"><code>sz_rma/item</code></action>
+            </block>
+        </reference>
+        <update handle="sz_rma_return_create_handle"/>
+        <reference name="sales.order.info">
+            <action method="addLink" translate="label" module="sales"><name>view</name><path>sales/guest/view</path><label>Order Information</label></action>
+            <action method="addLink" translate="label" module="sales"><name>invoice</name><path>sales/guest/invoice</path><label>Invoices</label></action>
+            <action method="addLink" translate="label" module="sales"><name>shipment</name><path>sales/guest/shipment</path><label>Shipments</label></action>
+            <action method="addLink" translate="label" module="sales"><name>creditmemo</name><path>sales/guest/creditmemo</path><label>Refunds</label></action>
+            <action method="addLink" translate="label" module="sales"><name>returns</name><path></path><label>Returns</label></action>
+        </reference>
+    </sz_rma_guest_create>
+
+    <sales_order_view>
+        <reference name="my.account.wrapper">
+            <block type="sz_rma/order_info" name="sz.rma.info" />
+        </reference>
+        <reference name="sales.order.info.buttons">
+            <block type="sz_rma/order_button" name="sz.rma.info.button" template="sz_rma/order/button.phtml" />
+        </reference>
+    </sales_order_view>
+    <sales_order_invoice>
+         <reference name="my.account.wrapper">
+            <block type="sz_rma/order_info" name="sz.rma.info" />
+        </reference>
+        <reference name="sales.order.info.buttons">
+            <block type="sz_rma/order_button" name="sz.rma.info.button" template="sz_rma/order/button.phtml" />
+        </reference>
+    </sales_order_invoice>
+    <sales_order_shipment>
+         <reference name="my.account.wrapper">
+            <block type="sz_rma/order_info" name="sz.rma.info" />
+        </reference>
+        <reference name="sales.order.info.buttons">
+            <block type="sz_rma/order_button" name="sz.rma.info.button" template="sz_rma/order/button.phtml" />
+        </reference>
+    </sales_order_shipment>
+    <sales_order_creditmemo>
+        <reference name="my.account.wrapper">
+            <block type="sz_rma/order_info" name="sz.rma.info" />
+        </reference>
+        <reference name="sales.order.info.buttons">
+            <block type="sz_rma/order_button" name="sz.rma.info.button" template="sz_rma/order/button.phtml" />
+        </reference>
+    </sales_order_creditmemo>
+
+    <sales_guest_view translate="label">
+         <reference name="my.account.wrapper">
+            <block type="sz_rma/order_guest" name="sz.rma.info" />
+        </reference>
+        <reference name="sales.order.info.buttons">
+            <block type="sz_rma/order_button" name="sz.rma.info.button" template="sz_rma/order/button.phtml" />
+        </reference>
+    </sales_guest_view>
+    <sales_guest_invoice translate="label">
+         <reference name="my.account.wrapper">
+            <block type="sz_rma/order_guest" name="sz.rma.info" />
+        </reference>
+        <reference name="sales.order.info.buttons">
+            <block type="sz_rma/order_button" name="sz.rma.info.button" template="sz_rma/order/button.phtml" />
+        </reference>
+    </sales_guest_invoice>
+    <sales_guest_shipment translate="label">
+         <reference name="my.account.wrapper">
+            <block type="sz_rma/order_guest" name="sz.rma.info" />
+        </reference>
+        <reference name="sales.order.info.buttons">
+            <block type="sz_rma/order_button" name="sz.rma.info.button" template="sz_rma/order/button.phtml" />
+        </reference>
+    </sales_guest_shipment>
+    <sales_guest_creditmemo translate="label">
+         <reference name="my.account.wrapper">
+            <block type="sz_rma/order_guest" name="sz.rma.info" />
+        </reference>
+        <reference name="sales.order.info.buttons">
+            <block type="sz_rma/order_button" name="sz.rma.info.button" template="sz_rma/order/button.phtml" />
+        </reference>
+    </sales_guest_creditmemo>
+
+    <sz_rma_email_rma_items>
+        <block type="sz_rma/email_items" name="sz_rma_email_items" template="sz_rma/email/items.phtml" />
+    </sz_rma_email_rma_items>
+
+    <sz_rma_return_addlabel>
+        <block type="sz_rma/return_tracking" name="sz_rma_return_tracking" template="sz_rma/return/tracking.phtml" />
+    </sz_rma_return_addlabel>
+    <sz_rma_return_dellabel>
+        <block type="sz_rma/return_tracking" name="sz_rma_return_tracking" template="sz_rma/return/tracking.phtml" />
+    </sz_rma_return_dellabel>
+
+    <sz_rma_guest_addlabel>
+        <block type="sz_rma/return_tracking" name="sz_rma_return_tracking" template="sz_rma/return/tracking.phtml" />
+    </sz_rma_guest_addlabel>
+    <sz_rma_guest_dellabel>
+        <block type="sz_rma/return_tracking" name="sz_rma_return_tracking" template="sz_rma/return/tracking.phtml" />
+    </sz_rma_guest_dellabel>
+
+    <sz_rma_tracking_popup translate="label">
+        <label>Shipment Tracking Popup</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/popup.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="sz_rma/return_tracking_popup" name="rma.tracking.popup" template="shipping/tracking/popup.phtml" />
+        </reference>
+    </sz_rma_tracking_popup>
+
+    <sz_rma_tracking_package translate="label">
+        <label>Shipment Package Popup</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/popup.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="sz_rma/return_tracking_package" name="rma.tracking.popup" template="sz_rma/return/popup/package.phtml" />
+        </reference>
+    </sz_rma_tracking_package>
+
+    <sz_rma_tracking_packageprint translate="label">
+        <label>Shipment Print Package Popup</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/popup.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="sz_rma/return_tracking_package" name="rma.tracking.popup" template="sz_rma/return/popup/package.phtml" />
+        </reference>
+    </sz_rma_tracking_packageprint>
+
+    <sz_rma_tracking_printlabel translate="label">
+        <label>Shipment Print Label Popup</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/popup.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="sz_rma/return_tracking_package" name="rma.tracking.popup" template="sz_rma/return/popup/package.phtml" />
+        </reference>
+    </sz_rma_tracking_printlabel>
+
+</layout>

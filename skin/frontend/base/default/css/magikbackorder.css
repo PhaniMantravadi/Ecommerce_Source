@@ -1,0 +1,8 @@
+#mgkbk-block { background: none repeat scroll 0 0 #F9F9F9;
+ border: 10px solid #BBBBBB;border-radius: 10px;display: none;height: auto;
+left: 34%;position:fixed;top: 25%;width: 32%;z-index: 2000;padding-bottom: 15px;}
+.mgkbkclose{color: #000000;cursor: pointer;font-size: 16px;font-weight: 700;line-height: 18px;position: absolute;right: 10px;text-decoration: none;top: 6px;}
+#mgkbkcontent {background: none repeat scroll 0 0 #F6F6F6;height: auto;overflow: auto;width: auto;margin-left:20px; margin-top:10px;text-align:left;}
+#mgkbkoverlay{ display:none; background:none repeat scroll 0 0 #000000; height:100%; left:0; opacity:0.6; position:fixed; top:0;width:100%; z-index:999; }
+.actions button.btn-cart-backorder{ display:block; height:21px; border:1px solid #de5400; background:#f18200; padding:0 8px; font:bold 12px/19px Arial, Helvetica, sans-serif; text-align:center; white-space:nowrap; color:#fff; }
+.mgkgroup-backorder{display: inline;background: #6db3f2;}

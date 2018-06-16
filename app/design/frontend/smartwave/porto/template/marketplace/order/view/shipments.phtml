@@ -1,0 +1,54 @@
+<?php
+$_shipmentItems = Mage::getModel('sales/order_shipment')->getCollection();
+$marketplaceHelper    = Mage::helper('marketplace');
+$supplier_id    = $marketplaceHelper->getSupplierId();
+$eavAttribute   = new Mage_Eav_Model_Mysql4_Entity_Attribute();
+$code           = $eavAttribute->getIdByCode('catalog_product', 'creator_id');
+$table          = "catalog_product_entity_int";
+$tableName      = Mage::getSingleton("core/resource")->getTableName($table);
+$shipmentItemTable = Mage::getSingleton('core/resource')->getTableName('sales/shipment_item');
+$_shipmentItems->getSelect()
+    ->joinInner(array('si' => $shipmentItemTable), 'si.parent_id = main_table.entity_id', array())
+    ->joinInner(array('e' => $tableName), 'e.entity_id = si.product_id AND e.attribute_id = ' . $code, array('e.value as supplier_id') )
+    ->where('e.value = ?', $supplier_id)
+    ->where('main_table.order_id = ?', Mage::registry('order_id'))
+    ->group('main_table.order_id');
+?>
+<h2 class="sub-header"><?php echo $this->__("Shipments"); ?></h2>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th><?php echo $this->__('Shipping Number'); ?></th>
+            <th><?php echo $this->__('Date'); ?></th>
+            <th><?php echo $this->__('Tracking Number'); ?></th>
+            <th><?php echo $this->__('Action'); ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php if($marketplaceHelper->canCreateInvoice(Mage::registry('order_id'), $supplier_id)) { ?>
+            <?php if($_shipmentItems->getSize() && count($_shipmentItems->getData()) > 0): ?>
+                <?php foreach($_shipmentItems AS $_item) : ?>
+                    <?php $tracks = $_item->getAllTracks(); ?>
+                    <?php
+                        if ($supplier_id != $_item->getData('supplier_id')) {
+                           continue;
+                        }
+                    ?>
+                    <tr>
+                        <td><?php echo $_item->getIncrementId(); ?></td>
+                        <td><?php echo $_item->getCreatedAt(); ?></td>
+                        <td><?php echo (count($tracks) > 0 ?  '#'.$tracks[0]->getData('track_number') : ''); ?></td>
+                        <td> <a href="<?php echo Mage::getUrl('*/shipment/view/', array('id' => $_item->getId())) ?>" class="btn btn-primary"><?php echo $this->__('View'); ?></a></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <td colspan="3"><?php echo $this->__("No Shipments"); ?></td>
+                <td><a href="<?php echo Mage::getUrl('marketplace/shipment/create/', array('id' => $this->getOrder()->getId())) ?>" class="btn btn-primary"><?php echo $this->__('Create'); ?></a></td>
+            <?php endif; ?>
+        <?php } else { ?>
+            <td colspan="4"><?php echo $this->__("Order is cancelled or requested for cancellation, hence can not be ship"); ?></td>
+        <?php } ?>
+        </tbody>
+    </table>
+</div>

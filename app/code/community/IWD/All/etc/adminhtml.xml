@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<config>
+    <menu>
+        <system>
+            <children>
+                <iwdall>
+                    <title>Extensions</title>
+                    <sort_order>0</sort_order>                
+                </iwdall>
+            </children>
+        </system>
+    </menu>
+</config>

@@ -1,0 +1,63 @@
+<?php
+	$data = $this->getRequest()->getParams();
+	$qpostcode = $data['pincode'];
+	$mpostcode = Mage::getSingleton('asifhussain_shippingcod/postcode')->getZipDetails($qpostcode);
+	if($mpostcode!='inv' && $mpostcode !='disable') {
+		$codmsgtrue = Mage::getStoreConfig('shippingcod_section/shippingcod_group/cod_allowed');
+		$codmsgfalse = Mage::getStoreConfig('shippingcod_section/shippingcod_group/cod_disallowed');
+		$shipmsgtrue = Mage::getStoreConfig('shippingcod_section/shippingcod_group/shipping_allowed');
+		$shipmsgfalse = Mage::getStoreConfig('shippingcod_section/shippingcod_group/shipping_disallowed');
+		$visualtype = Mage::getStoreConfig('shippingcod_section/shippingcod_group/visualtype');
+		$sitesurl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+		$sitesurl = (substr($sitesurl, -1) == '/' ? $sitesurl : $sitesurl.'/').'shippingcod/';
+		$deltime = '';
+		$isship = '';
+		$iscod = '';
+		if($mpostcode) {
+			$deltime =  $mpostcode->getDaystodeliver();
+			$isship =  $mpostcode->getIsshipable();
+			$iscod =  $mpostcode->getIscod();
+		}
+	?>
+	<img src="<?php echo $sitesurl?>l.png" height="15" width="15">Delivery option for: <b><?php echo $qpostcode?></b>&nbsp;&nbsp;
+	<form>
+		<button value="Change" class="button" type="button" id="btnchngzip">
+			<span>Change</span>
+		</button>
+	</form><br>
+	<?php if($iscod==1 && $isship==1) { 
+			if($visualtype=='text') {	?>
+		<img src="<?php echo $sitesurl ?>check.png" height="15" width="15"><b>Status: </b><?php echo $shipmsgtrue?><br>
+		<img src="<?php echo $sitesurl ?>check.png" height="15" width="15"><b>COD: </b><?php echo $codmsgtrue?><br>
+		<img src="<?php echo $sitesurl ?>check.png" height="15" width="15"><b>Delivery Time: </b><?php echo $deltime?> Days
+	<?php } else { ?>
+		<img src="<?php echo $sitesurl ?>shippingtrue.png" alt="<?php echo $shipmsgtrue?>" title="<?php echo $shipmsgtrue?>" width="48">&nbsp;&nbsp;&nbsp;
+		<img src="<?php echo $sitesurl ?>codtrue.png" alt="<?php echo $codmsgtrue?>" title="<?php echo $codmsgtrue?>" width="48">&nbsp;
+		<b>Delivery Time: </b><?php echo $deltime?> Days
+	<?php } } else if($iscod==0 && $isship==1) { 
+				if($visualtype=='text') {  ?>    
+		<img src="<?php echo $sitesurl ?>check.png" height="15" width="15"><b>Status: </b><?php echo $shipmsgtrue?><br>
+		<img src="<?php echo $sitesurl ?>cancel.png" height="15" width="15"><b>COD :</b><?php echo $codmsgfalse?><br>
+		<img src="<?php echo $sitesurl ?>check.png" height="15" width="15"><b>Delivery Time: </b><?php echo $deltime?> Days
+	<?php }	else { ?>
+		<img src="<?php echo $sitesurl ?>shippingtrue.png" alt="<?php echo $shipmsgtrue?>" title="<?php echo $shipmsgtrue?>" width="48">&nbsp;&nbsp;&nbsp;
+		<img src="<?php echo $sitesurl ?>codfalse.png" alt="<?php echo $codmsgfalse?>" title="<?php echo $codmsgfalse?>" width="48">&nbsp;
+		<b>Delivery Time: </b><?php echo $deltime?> Days
+	<?php } } else if($iscod==1 && $isship==0) { 
+				if($visualtype=='text') {  ?>    
+		<img src="<?php echo $sitesurl ?>cancel.png" height="15" width="15"><b>Status: </b><?php echo $shipmsgfalse?><br>
+		<img src="<?php echo $sitesurl ?>cancel.png" height="15" width="15"><b>COD :</b><?php echo $codmsgfalse?><br>
+	<?php }	else { ?>
+		<img src="<?php echo $sitesurl ?>shippingfalse.png" alt="<?php echo $shipmsgfalse?>" title="<?php echo $shipmsgfalse?>" width="48">&nbsp;&nbsp;&nbsp;
+		<img src="<?php echo $sitesurl ?>codfalse.png" alt="<?php echo $codmsgfalse?>" title="<?php echo $codmsgfalse?>" width="48">&nbsp;
+	<?php }
+	} else if($iscod==0 && $isship==0) { 
+					if($visualtype=='text') {  ?>    
+		<img src="<?php echo $sitesurl ?>cancel.png" height="15" width="15"><b>Status: </b><?php echo $shipmsgfalse?><br>
+		<img src="<?php echo $sitesurl ?>cancel.png" height="15" width="15"><b>COD: </b><?php echo $codmsgfalse?><br>
+	<?php } else { ?>
+		<img src="<?php echo $sitesurl ?>shippingfalse.png" alt="<?php echo $shipmsgfalse?>" title="<?php echo $shipmsgfalse?>" width="48">&nbsp;&nbsp;&nbsp;
+		<img src="<?php echo $sitesurl ?>codfalse.png" alt="<?php echo $codmsgfalse?>" title="<?php echo $codmsgfalse?>" width="48">	
+	<?php } } }?>
+
+

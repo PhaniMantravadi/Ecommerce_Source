@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+        <Xautosku translate="label">
+            <label>USCODING EXTENSIONS</label>
+            <sort_order>110</sort_order>
+        </Xautosku>
+    </tabs>
+    <sections>
+        <Xautosku translate="label">
+			<label>Generate Automatically SKU</label>
+			<tab>Xautosku</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>300</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+            <groups>
+				<mainmenu translate="label">
+                    <label>Main Menu</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label comment">
+                            <label>Enabled</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                        </enabled>
+                        <sku_type translate="label">
+                            <label>SKU Type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>xautosku/system_config_skutype</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sku_type>
+                    </fields>    
+                </mainmenu>
+                <info translate="label">
+                    <label>Uscoding</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>7</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment>The Create SKU Auto Extension is developed and supported by <![CDATA[<a href="http://www.uscoding.net" target="_blank" style='text-decoration: none'><font color="#EF1313">USCODING</font></a>.<br/><br/>]]>Visit our website: <![CDATA[<a href="http://www.uscoding.net" target="_blank" style='text-decoration: none'><font color="#EF1313">wwww.uscoding.net</font></a>]]> to view more themes and extension required for your magento store.<![CDATA[<br/><br/>]]> Write ticket and get support from our at: <![CDATA[<a href="http://uscoding.net/support" target="_blank" style='text-decoration: none'><font color="#EF1313">Technical Support - Forum</font></a>.]]>  </comment>
+                </info>
+            </groups>
+        </Xautosku>
+    </sections>
+</config>

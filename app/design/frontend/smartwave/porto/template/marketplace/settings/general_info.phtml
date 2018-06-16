@@ -1,0 +1,233 @@
+<?php if(Mage::getSingleton('customer/session')->isLoggedIn()) {
+    $customer = Mage::getModel('customer/customer')->load(Mage::getSingleton('customer/session')->getId());
+} else {
+    $customer = new Varien_Object();
+}
+?>
+<?php $messages = Mage::getSingleton('customer/session')->getMessages(true); ?>
+<?php $msgClass = '';?>
+<?php foreach($messages->getItems('error') AS $msg): ?>
+    <?php
+    $message = $msg->getCode();
+    $msgClass = 'error-msg';
+    ?>
+<?php endforeach; ?>
+<?php foreach($messages->getItems('success') AS $msg): ?>
+    <?php
+    $message = $msg->getCode();
+    $msgClass = 'success-msg';
+    ?>
+<?php endforeach; ?>
+<div class="container vendor-container">
+    <h2><?php echo $this->__("General Information"); ?></h2>
+    <?php if ($message) {?>
+    <div class="row">
+        <ul>
+            <li class="<?php echo $msgClass;?>">
+                <ul><li><span><?php echo $message; ?></span></li></ul>
+            </li>
+
+        </ul>
+    </div>
+    <?php } ?>
+    <div class="row">
+            <form action="<?php echo Mage::getUrl('marketplace/settings/generalInfoSave') ?>" method="post" id="supplierRegisterForm" accept-charset="utf-8" enctype="multipart/form-data">
+                <div class="fieldset">
+                    <ul class="form-list">
+                        <li class="fields">
+                            <div class="firstname">
+                                <div class="field name-firstname">
+                                    <label class="required" for="first_name"><em>*</em>
+                                        <?php echo $this->__('First Name'); ?>
+                                    </label>
+                                    <div class="input-box">
+                                        <input name="firstname" type="text" value="<?php echo $this->escapeHtml($customer->getFirstname());?>" id="firstname"  maxlength="150" class="input-text required-entry">
+                                    </div>
+                                </div>
+                                <div class="field name-bankname">
+                                    <label class="required" for="lastname"><em>*</em>
+                                        <?php echo $this->__('Last Name'); ?>
+                                    </label>
+                                    <div class="input-box">
+                                        <input name="lastname" type="text" maxlength="150" value="<?php echo $this->escapeHtml($customer->getLastname());?>" id="lastname" class="input-text required-entry">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="fields">
+                            <div class="shop_name">
+                                <div class="field shop_name">
+                                    <label class="required" for="shop_name"><em>*</em>
+                                        <?php echo $this->__('Shop Name'); ?>
+                                    </label>
+                                    <div class="input-box">
+                                        <input name="shop_name" type="text" value="<?php echo $this->escapeHtml($customer->getShopName());?>" id="shop_name" class="input-text required-entry">
+                                    </div>
+                                </div>
+                                <div class="field mobile_number">
+                                    <label class="required" for="mobile_number"><em>*</em>
+                                        <?php echo $this->__('Mobile Number'); ?>
+                                    </label>
+                                    <div class="input-box">
+                                        <input name="mobile_number" type="text" value="<?php echo $this->escapeHtml($customer->getMobileNumber());?>" id="mobile_number" class="input-text validate-phoneLax">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="fields">
+                            <div class="email">
+                                <div class="field email">
+                                    <label class="required" for="email">
+                                        <?php echo $this->__('Email Address'); ?>
+                                    </label>
+                                    <div class="input-box">
+                                        <input name="email" id="customer_email" type="text" value="<?php echo $this->escapeHtml($customer->getEmail());?>" onchange="checkExistanceEmail();" required="required" class="form-control required-entry validate-email" placeholder="Enter Email" />
+                                        <input name="existing_email" id="existing_email" value="<?php echo $this->escapeHtml($customer->getEmail());?>" type="hidden"/>
+                                    </div>
+                                </div>
+                                <div class="field about_your_shop">
+                                    <label class="required" for="about_your_shop">
+                                        <?php echo $this->__('About Your Shop'); ?>
+                                    </label>
+                                    <div class="input-box">
+                                        <input name="about_shop" type="text" value="<?php echo $this->escapeHtml($customer->getAboutShop());?>" id="about_shop" maxlength="100" class="input-text maximum-length-100">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="fields">
+                            <div class="password">
+                                <div class="field password">
+                                    <label class="required" for="password">
+                                        <?php echo $this->__('Password'); ?>
+                                    </label>
+                                    <div class="input-box">
+                                        <input name="password" type="password" class="form-control validate-password" placeholder="Enter Password" />
+                                    </div>
+                                </div>
+                                <div class="field password">
+                                    <label class="required" for="password"><em>*</em>
+                                        <?php echo $this->__('Confirm Password'); ?>
+                                    </label>
+                                    <div class="input-box">
+                                        <input name="confirmation" type="password" class="form-control validate-cpassword" placeholder="Enter Confirmation Password" />
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="fields">
+                            <div class="logo">
+                                <div class="field name-logo">
+                                    <label class="required" for="logo"><em>*</em>
+                                        <?php echo $this->__('Logo'); ?>
+                                    </label>
+                                    <div class="input-box">
+                                        <?php if(Mage::helper('marketplace')->getSupplierLogo()): ?>
+                                            <img src="<?php echo Mage::helper('marketplace')->getSupplierLogo(); ?>" alt="" class="avatar img-circle img-thumbnail" style="width: 80px"/>
+                                        <?php endif; ?>
+                                        <input type="file" id="logo" name="logo" class="text-center center-block well well-sm"/>
+                                        <label><input type="checkbox" name="remove_logo" /> <?php echo $this->__('Remove logo'); ?> </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                    <button class="btn btn-success btn-lg pull-right" type="submit">Submit</button>
+            </form>
+
+    </div>
+</div>
+<script type="text/javascript">
+    //< ![CDATA[
+    var customForm = new VarienForm('supplierRegisterForm');
+    //]]>
+</script>
+<script type="text/javascript">
+    function checkExistanceEmail() {
+        var loginURL = '<?php echo $this->getUrl('supplierfrontendproductuploader/register/checkemail'); ?>';
+        if ($('customer_email').getValue() != $('existing_email').getValue()) {
+
+
+            var request = new Ajax.Request(
+                loginURL,
+                {
+                    method: 'post',
+                    parameters: {
+                        email: $('customer_email').getValue()
+                    },
+                    onSuccess: function (transport) {
+                        var data = transport.responseText.evalJSON();
+                        if (data.status) {
+                            jQueryIWD('#customer_email').addClass('validation-failed');
+                            jQueryIWD('#customer_email').addClass('validate-email-failed');
+                            var errHtml = '<div id="check-email-validation" class="validation-advice">Email Id is already registered.</div>';
+                            jQueryIWD('#customer_email').after(errHtml);
+                        } else {
+                            jQueryIWD('#customer_email').removeClass('validate-email-failed');
+                            jQueryIWD('#customer_email').removeClass('validation-failed');
+                            if (typeof jQueryIWD('#check-email-validation') != 'undefined') {
+                                jQueryIWD('#check-email-validation').remove();
+                            }
+
+                        }
+                    }
+
+                }
+            );
+        }
+    }
+    jQueryIWD(document).ready(function () {
+        function validateForm(){
+            if(customForm.validator && customForm.validator.validate()){
+                return true;
+            }
+            return false;
+        }
+
+        var navListItems = jQueryIWD('div.setup-panel div a'),
+            allWells = jQueryIWD('.setup-content'),
+            allNextBtn = jQueryIWD('.nextBtn');
+
+        allWells.hide();
+
+        navListItems.click(function (e) {
+            e.preventDefault();
+            var $target = jQueryIWD(jQueryIWD(this).attr('href')),
+                $item = jQueryIWD(this);
+
+            if (!$item.hasClass('disabled')) {
+                navListItems.removeClass('btn-primary').addClass('btn-default');
+                $item.addClass('btn-primary');
+                allWells.hide();
+                $target.show();
+                $target.find('input:eq(0)').focus();
+            }
+        });
+
+        allNextBtn.click(function(){
+            var curStep = jQueryIWD(this).closest(".setup-content"),
+                curStepBtn = curStep.attr("id"),
+                nextStepWizard = jQueryIWD('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+                curInputs = curStep.find("input[type='text'],input[type='url'],textarea[textarea]"),
+                isValid = true,
+                prototypeValidator = true;
+
+            jQueryIWD(".form-group").removeClass("has-error");
+            for(var i=0; i<curInputs.length; i++){
+                if (!curInputs[i].validity.valid){
+                    isValid = false;
+                    jQueryIWD(curInputs[i]).closest(".form-group").addClass("has-error");
+                }
+            }
+            prototypeValidator = validateForm();
+            var emailValidation = jQueryIWD('#customer_email').hasClass('validate-email-failed');
+            if (isValid && prototypeValidator && !emailValidation)
+                nextStepWizard.removeAttr('disabled').trigger('click');
+        });
+
+
+        jQueryIWD('div.setup-panel div a.btn-primary').trigger('click');
+    });
+
+</script>

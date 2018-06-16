@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Magik_Backorder>
+      <version>0.2.0</version>
+    </Magik_Backorder>
+  </modules>
+  <frontend>
+    <routers>
+      <backorder>
+        <use>standard</use>
+          <args>
+            <module>Magik_Backorder</module>
+            <frontName>backorder</frontName>
+          </args>
+      </backorder>
+    </routers>
+		<layout>
+		  <updates>
+			<backorder>
+			  <file>backorder.xml</file>
+			</backorder>
+		  </updates>
+		</layout>
+  </frontend>
+  <global>
+    <helpers>
+      <backorder>
+        <class>Magik_Backorder_Helper</class>
+      </backorder>
+    </helpers>
+	<blocks>
+	  <backorder>
+		<class>Magik_Backorder_Block</class>
+	  </backorder>
+	 
+	</blocks>
+	<models>
+	 <backorder>
+		<class>Magik_Backorder_Model</class>
+		<resourceModel>backorder_mysql4</resourceModel>
+	  </backorder>
+	  <backorder_mysql4>
+		<class>Magik_Backorder_Model_Mysql4</class>
+		<entities>		  
+			  <backorder>
+				<table>magikbackorder</table>
+			  </backorder>
+        </entities>
+	  </backorder_mysql4>
+	</models>
+	<resources>
+	  <backorder_setup>
+		<setup>
+		  <module>Magik_Backorder</module>
+		</setup>
+		<connection>
+		  <use>core_setup</use>
+		</connection>
+	  </backorder_setup>
+	  <backorder_write>
+		<connection>
+		  <use>core_write</use>
+		</connection>
+	  </backorder_write>
+	  <backorder_read>
+		<connection>
+		  <use>core_read</use>
+		</connection>
+	  </backorder_read>
+	</resources>
+	<events>
+	
+	
+	    <core_block_abstract_to_html_after>
+                <observers>
+                    <backorder>
+                        <class>backorder/observer</class>
+                        <method>onListBlockHtmlBefore</method>
+                    </backorder>
+                </observers>
+            </core_block_abstract_to_html_after>
+             
+            
+            </events>
+  </global>
+  <adminhtml>
+	<acl>
+	  <resources>
+	      <admin>  
+		  <children>
+		      <system>
+			  <children>
+			      <config>
+				  <children>
+				      <bkordersection translate="title" module="backorder">  
+					  <title>Magik Backorder Section ACL</title>  
+					  <sort_order>267</sort_order>
+				      </bkordersection>
+				  </children>
+			      </config>
+			  </children>
+		      </system>
+                </children>
+	      </admin>
+	  </resources>
+      </acl> 
+	<layout>
+	  <updates>
+		<backorder module="backorder">
+		  <file>backorder.xml</file>
+		</backorder>
+	  </updates>
+	</layout>
+  </adminhtml>
+</config> 
